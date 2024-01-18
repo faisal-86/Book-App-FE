@@ -1,4 +1,4 @@
-# Book-App-FE
+# Novagram-FE
 README
 
 
