@@ -190,8 +190,8 @@ const onLogoutHandler = (e) => {
     </nav>
 
 
-
     <div className="container-fluid p-0">
+
       <main>
         <Routes>
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
