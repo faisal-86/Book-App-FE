@@ -11,7 +11,6 @@ import Signin from './components/registration/SignIn';
 import Dashboard from './pages/dashboard/Dashboard';
 import BookEditForm from './pages/book/BookEditForm';
 
-import RequestCreateForm from './pages/request/RequestCreateForm';
 
 const passToken =() => { 
   return { headers: { "Authorization": "Bearer " + localStorage.getItem("token")}};
@@ -193,7 +192,6 @@ const onLogoutHandler = (e) => {
 
     <div className="container-fluid p-0">
 
-      <RequestCreateForm/>
       <main>
         <Routes>
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
