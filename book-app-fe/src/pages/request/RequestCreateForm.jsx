@@ -31,39 +31,48 @@ export default function RequestCreateForm(props) {
         });
       };
 
-      return (
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label">Book:</label>
-            <input  type="text" className="form-control" name="book" value={formData.book} onChange={handleChange} />
-          </div>
-    
-          <div className="mb-3">
-            <label className="form-label">User:</label>
-            <input type="text" className="form-control" name="user" value={formData.user} onChange={handleChange} />
-          </div>
-    
-          <div className="mb-3">
-            <label className="form-label">Description:</label>
-            <textarea className="form-control" name="description" value={formData.description} onChange={handleChange} /> </div>
-    
-          <div className="mb-3">
-            <label className="form-label">Approval:</label>
-            <div className="form-check">
-              <input type="radio" className="form-check-input" name="approval" value="accept" checked={formData.approval === 'accept'} onChange={handleChange}  />
-              <label className="form-check-label">Accept</label>
+      
+  return (
+    <div className="container mt-4">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label className="form-label">Book:</label>
+              <input type="text" className="form-control" name="book" value={formData.book} onChange={handleChange} />
             </div>
 
-            <div className="form-check">
-              <input type="radio" className="form-check-input" name="approval" value="denied" checked={formData.approval === 'denied'} onChange={handleChange} />
-              <label className="form-check-label">Denied</label>
+            <div className="mb-3">
+              <label className="form-label">User:</label>
+              <input type="text" className="form-control" name="user" value={formData.user} onChange={handleChange} />
             </div>
 
-          </div>
-    
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
-      );
-    };
+            <div className="mb-3">
+              <label className="form-label">Description:</label>
+              <textarea className="form-control" name="description" value={formData.description} onChange={handleChange} />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Approval:</label>
+              <div className="form-check">
+                <input type="radio" className="form-check-input" name="approval" value="accept" checked={formData.approval === 'accept'} onChange={handleChange} />
+                <label className="form-check-label">Accept</label>
+              </div>
+
+              <div className="form-check">
+                <input type="radio" className="form-check-input" name="approval" value="denied" checked={formData.approval === 'denied'} onChange={handleChange} />
+                <label className="form-check-label">Denied</label>
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

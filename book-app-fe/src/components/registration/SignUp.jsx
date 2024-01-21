@@ -17,49 +17,48 @@ const registerHandler = (event) => {
     event.target.reset();
 };
 
-  return (
-    
-<>
-<div className="container py-5 mb-5">
+return (
+  <>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card bg-light text-dark">
+            <div className="card-body">
+              <form onSubmit={registerHandler} autoComplete="off">
+                <h1 className="text-center mb-4">Sign Up</h1>
 
-<div className="form-signin w-100 m-auto">
+                <div className="mb-3">
+                  <label htmlFor="firstName" className="form-label">First Name</label>
+                  <input type="text" className="form-control" id="firstName" name="firstName" onChange={handleChange} required />
+                </div>
 
-<form onSubmit={registerHandler} autoComplete="off">
-  
-    <h1 className="h3 mb-3 fw-normal">Sign Up</h1>
+                <div className="mb-3">
+                  <label htmlFor="lastName" className="form-label">Last Name</label>
+                  <input type="text" className="form-control" id="lastName" name="lastName" onChange={handleChange} required />
+                </div>
 
-    <div className="form-floating">
-      <input type="text" placeholder="First Name" id="firstName" name="firstName" className="form-control" onChange={handleChange} required />
-      <label htmlFor="firstName">First Name</label>
+                <div className="mb-3">
+                  <label htmlFor="emailAddress" className="form-label">Email address</label>
+                  <input type="email" className="form-control" id="emailAddress" name="emailAddress" onChange={handleChange} required />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="phoneNumber" className="form-label">Phone Number (Optional)</label>
+                  <input type="number" className="form-control" id="phoneNumber" name="phoneNumber" onChange={handleChange} />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">Password</label>
+                  <input type="password" className="form-control" id="password" name="password" minLength={6} onChange={handleChange} required />
+                </div>
+
+                <button type="submit" className="btn btn-primary w-100 py-2">Register</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div className="form-floating">
-      <input type="text" placeholder="Last Name" id="lastName" name="lastName" className="form-control" onChange={handleChange} required />
-      <label htmlFor="lastName">Last Name</label>
-    </div>
-  <br />
-    <div className="form-floating">
-      <input type="email" placeholder="Email" id="emailAddress" name="emailAddress" className="form-control" onChange={handleChange} required />
-      <label htmlFor="emailAddress">Email address</label>
-    </div>
-
-    <div className="form-floating">
-      <input type="number" placeholder="Phone Number" id="phoneNumber" name="phoneNumber" className="form-control" onChange={handleChange} />
-      <label htmlFor="phoneNumber">Phone Number (Optional)</label>
-    </div>
-
-    <div className="form-floating">
-      <input type="password" name="password" id="password" minLength={6} placeholder="Enter Password" className="form-control" onChange={handleChange} required />
-      <label htmlFor="password">Password</label>
-    </div>
-
-    <button className="btn btn-primary w-100 py-2" type="submit">Register</button>
-
-  </form>
-</div>
-
-</div>
-</>
-
-  )
+  </>
+);
 }
