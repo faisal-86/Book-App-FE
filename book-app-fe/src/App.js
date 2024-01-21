@@ -10,6 +10,9 @@ import Signup from './components/registration/SignUp';
 import Signin from './components/registration/SignIn';
 import Dashboard from './pages/dashboard/Dashboard';
 import BookEditForm from './pages/book/BookEditForm';
+import CategoryList from './pages/category/CategoryList';
+// import CategoryCreateForm from './pages/category/CategoryCreateForm';
+import Category from './pages/category/Category';
 
 
 const passToken =() => { 
@@ -191,6 +194,9 @@ const onLogoutHandler = (e) => {
 
 
     <div className="container-fluid p-0">
+      <CategoryList/>
+      <Category/>
+      {/* <CategoryCreateForm/> */}
 
       <main>
         <Routes>
