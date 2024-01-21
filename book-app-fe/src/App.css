@@ -39,3 +39,19 @@
   border-color: #2da3d8;
   outline: none;
 }
+.barfr {
+  background-color: #012b3f;
+  height: 90px;
+}
+.containerfluid{
+  justify-content: center;
+}
+
+.navla{
+  background-color: #2da3d8;
+  height: 50px;
+  width: 75%;
+
+  /* navbar-expand-lg bg-dark w-auto p-4 */
+  
+}
