@@ -16,28 +16,31 @@ const loginHandler = (event) => {
     props.login(newUser);
     event.target.reset();
 };
-
-
-
 return (
-  <div className="container">
-    <div className="row">
-      <div>
-        <form className="form-signin" onSubmit={loginHandler} autoComplete="off">
-          <h1 className="h3 mb-3 fw-normal text-center">Sign in</h1>
-          <div className="form-floating mb-3">
-            <input type="email" placeholder="Email" id="emailAddress" name="emailAddress" className="form-control" onChange={handleChange} required />
-            <label htmlFor="emailAddress">Email address</label>
+  <div className="container mt-5">
+    <div className="row justify-content-center">
+      <div className="col-md-6">
+        <div className="card bg-light text-dark">
+          <div className="card-body">
+            <form onSubmit={loginHandler} autoComplete="off">
+              <h1 className="text-center mb-4">Sign in</h1>
+
+              <div className="mb-4">
+                <label htmlFor="emailAddress" className="form-label">Email address</label>
+                <input type="email" className="form-control" id="emailAddress" name="emailAddress" onChange={handleChange} required />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="password" className="form-label">Password</label>
+                <input type="password" className="form-control" id="password" name="password" onChange={handleChange} required />
+              </div>
+
+              <button type="submit" className="btn btn-primary w-100" data-bs-dismiss={props.showModal}>Login</button>
+            </form>
+
+            <p className="text-danger text-center mt-5">{props.warning}</p>
           </div>
-          <div className="form-floating mb-3">
-            <input type="password" name="password" id="password" placeholder="Enter Password" className="form-control" onChange={handleChange} required />
-            <label htmlFor="password">Password</label>
-          </div>
-          <button className="btn btn-primary w-100" type="submit" data-bs-dismiss={props.showModal}>Login</button>
-        </form>
-        <p className="text-danger text-center mt-3">{props.warning}</p>
-      </div>
-      <div className='imageC'>
+        </div>
       </div>
     </div>
   </div>
