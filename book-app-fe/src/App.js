@@ -1,6 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from 'react-bootstrap';
+
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import  Axios  from 'axios';
@@ -11,6 +11,7 @@ import Signin from './components/registration/SignIn';
 import Dashboard from './pages/dashboard/Dashboard';
 import BookEditForm from './pages/book/BookEditForm';
 import About from './pages/About';
+import Home from './pages/Home';
 
 
 
@@ -178,7 +179,7 @@ const onLogoutHandler = (e) => {
     <div class="container">
   <div class="row">
     <div class="col-sm">
-    <Link to="/" icon="fa-solid fa-house"  className='homelink'>Home</Link>
+    <Link to="/home" icon="fa-solid fa-house"  className='homelink'>Home</Link>
     </div>
     <div class="col-sm">
     <Link to="category" className='homelink'>Category</Link>
@@ -225,6 +226,7 @@ const onLogoutHandler = (e) => {
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
           <Route path="/signin" element={isAuth ? <Dashboard userData={userData} /> : <Signin login={loginHandler} />}></Route>
           <Route path="/about" element={<About/>}></Route>
+          <Route path='/home' element={<Home/>}> </Route>
         </Routes>
       </main>
     </div>
