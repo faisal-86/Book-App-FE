@@ -14,7 +14,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import About from './pages/About';
 import Home from './pages/Home';
-
+import ProfilePage from './components/registration/Profile';
 
 
 const passToken =() => { 
@@ -222,6 +222,8 @@ const onLogoutHandler = (e) => {
           <Route path="/signin" element={isAuth ? <Dashboard userData={userData} /> : <Signin login={loginHandler} />}></Route>
           <Route path="/about" element={<About/>}></Route>
           <Route path='/home' element={<Home/>}> </Route>
+          <Route path='/profile' element={<ProfilePage/>}></Route>
+          {/* <Route path='/profile' element={isAuth ? <profile userData={userData} /> :  <Signin login={loginHandler} />}></Route> */}
         </Routes>
       </main>
     </div>
