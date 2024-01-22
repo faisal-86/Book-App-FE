@@ -9,7 +9,11 @@ import React from 'react'
 import Signup from './components/registration/SignUp';
 import Signin from './components/registration/SignIn';
 import Dashboard from './pages/dashboard/Dashboard';
+import BookEditForm from './pages/book/BookEditForm';
+import About from './pages/About';
 import Home from './pages/Home';
+
+
 
 const passToken =() => { 
   return { headers: { "Authorization": "Bearer " + localStorage.getItem("token")}};
@@ -137,68 +141,194 @@ const onLogoutHandler = (e) => {
   
   return(
     <>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-         <Link to='/home' className="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-          <span className="fs-2">Novagram</span>
-        </Link>
-        <div className="collapse navbar-collapse">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            {isAuth ? (
-              <>
-                {userData.userType <= 3 ? (
-                  <>
-                    <li className="nav-item">
-                      <Link to="/" className="btn btn-bd-primary me-2">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to="/user" onClick={() => { setIsEditUser(false); setIsEditUser(false) }} className="btn btn-light me-2">Records</Link>
-                    </li>
-                  </>
-                ) : null}
-
-                {userData.userType === 1 ? (
-                  <li className="nav-item">
-                    <Link to="/user" onClick={() => { setIsEditUser(false) }} className="btn btn-bd-primary me-2">Users</Link>
-                  </li>
-                ) : null}
-
-                <li className="nav-item">
-                  <Link to="/profile" className="profile_img btn me-2" onClick={() => { editView(userData._id) }}></Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/logout" className="btn btn-outline-danger" onClick={onLogoutHandler}>Logout</Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item">
-                  <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/signin" className="btn btn-outline-success me-2">Login</Link>
-                </li>
-                <li className="nav-item">
-                  <button type="button" className="btn btn-bd-primary me-2 px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">About</button>
-                </li>
-              </>
-            )}
+    <nav class="navbar navbar-expand-lg bg-dark w-auto p-4">
+  <div class="container-fluid">
+  <li className="nav-item">
+           <Link to="/about"> <button type="button" className="btn btn-info me-5 px-4 text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">About</button></Link>
+            </li>
+    
+    <Link to="/" class="navbar-brand text-white px-5">Navbar</Link>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        
           </ul>
-        </div>
-      </div>
-    </nav>
+        
+      
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<nav class="navla">
+<div class="textbara">
+
+</div>
+<div className='ulhome'>
+  
+
+ <div class="container">
+  <div class="row">
+    <div class="col">
+
+    <div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <Link to="/home" icon="fa-solid fa-house"  className='homelink'>Home</Link>
+    </div>
+    <div class="col-sm">
+    <Link to="category" className='homelink'>Category</Link>
+    </div>
+    <div class="col-sm">
+    <Link to="book" className='homelink'>books</Link>
+    </div>
+    <div class="col-sm">
+    <Link to="manga" className='homelink'>manga</Link>
+    </div>
+  </div>
+</div>
+      
+    </div>
+    <div class="col">
+
+    <div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+    </div>
+    <div class="col-sm">
+    <Link to="/signin" className="btn btn-outline-success me-2 ">Login</Link>
+    </div>
+  </div>
+</div>    
+
+
+
+    </div>
+  </div>
+  </div>
+
+</div>
+</nav>
+   
+        
 
 
     <div className="container-fluid p-0">
-
       <main>
         <Routes>
+          
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
-          <Route path="/signin" element={isAuth ? <Dashboard userData={userData} /> : <Signin login={loginHandler} />}></Route>       
-          <Route path='/home' element={ <Home/>} />
+          <Route path="/signin" element={isAuth ? <Dashboard userData={userData} /> : <Signin login={loginHandler} />}></Route>
+          <Route path="/about" element={<About/>}></Route>
+          <Route path='/home' element={<Home/>}> </Route>
         </Routes>
       </main>
     </div>
+
+<footer  className="text-center text-lg-start bg-body-tertiary text-muted">
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </section>
+
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <div class="row mt-3">
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Novagram
+          </h6>
+          <p>
+            Here you can use rows and columns to organize your footer content. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Angular</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">React</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Vue</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Laravel</a>
+          </p>
+        </div>
+
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Settings</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            info@example.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <div class="text-center p-4">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div> 
+
+</footer>
+
   </>
 );
 };

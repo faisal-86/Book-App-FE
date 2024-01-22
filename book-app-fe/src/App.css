@@ -39,3 +39,31 @@
   border-color: #2da3d8;
   outline: none;
 }
+.barfr {
+  background-color: #012b3f;
+  height: 90px;
+}
+.containerfluid{
+  justify-content: center;
+}
+
+.navla{
+  background-color: #979797;
+  height: 50px;
+  width: 75%;
+  margin-bottom: 10px;
+  margin-left: 150px;
+
+  /* navbar-expand-lg bg-dark w-auto p-4 */
+  
+}
+.ulhome {
+  list-style-type: none;
+}
+
+.homelink{
+  font-size: 20px ;
+  text-decoration: none;
+  color: aliceblue;
+}
+
