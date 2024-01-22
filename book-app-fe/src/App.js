@@ -17,6 +17,7 @@ import Home from './pages/Home';
 import ProfilePage from './components/registration/Profile';
 
 
+
 const passToken =() => { 
   return { headers: { "Authorization": "Bearer " + localStorage.getItem("token")}};
 }
