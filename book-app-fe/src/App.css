@@ -28,7 +28,7 @@
 .form-signin input[type="password"] {
   margin-bottom: 1rem;
   border-radius: 4px;
-  border: 1px solid #ced4da;
+  border: 1px solid #2e6dac;
   padding: 0.5rem;
   width: 100%;
   box-sizing: border-box;
@@ -36,7 +36,7 @@
 
 .form-signin input[type="email"]:focus,
 .form-signin input[type="password"]:focus {
-  border-color: #2da3d8;
+  border-color: #ffffff;
   outline: none;
 }
 .barfr {
