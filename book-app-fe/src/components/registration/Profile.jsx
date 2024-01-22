@@ -21,18 +21,20 @@ export default function Profile() {
   return (
 
     <div>
-    <h1>bbbbbbbbbbbbbb</h1>
+  
 
       <div className="profile-header">
-        <img src="/path/to/avatar.jpg" alt="Avatar" />
-        <h2>{user.username}</h2>
+        <img src="../public/logo192.png" alt="Avatar" />
+        <h2>{user.firstName}</h2>
+        <h2>{user.lastName}</h2>
+
       </div>
 
       <div className="profile-section">
         <h3>Account</h3>
         <ul>
           <li>User ID: {user.id}</li>
-          <li>Email: {user.email}</li>
+          <li>Email: {user.emailAddress}</li>
         </ul>
       </div>
 
