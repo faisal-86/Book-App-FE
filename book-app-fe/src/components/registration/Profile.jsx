@@ -1,73 +1,58 @@
 import React, { useState } from 'react';
-import {  useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-export default function UserEditForm(props) {
+export default function Profile() {
+    const [user] = useState({
+        id: 123,
+        username: 'john_doe',
+        email: 'john@example.com',
+      });
+      const [history] = useState([
+        { id: 1, title: 'Book 1', author: 'Author 1' },
+        { id: 2, title: 'Book 2', author: 'Author 2' },
+        // Add more book entries as needed
+      ]);
+    
+      const [favorites] = useState([
+        { id: 3, title: 'Book 3', author: 'Author 3' },
+        { id: 4, title: 'Book 4', author: 'Author 4' },
+        // Add more book entries as needed
+      ]);
+  return (
 
-const navigate = useNavigate();
+    <div>
+    <h1>bbbbbbbbbbbbbb</h1>
 
-const [user, setEditUser] = useState(props.user);
+      <div className="profile-header">
+        <img src="/path/to/avatar.jpg" alt="Avatar" />
+        <h2>{user.username}</h2>
+      </div>
 
-const handleChange = (event) => {
-  //define the attributes from the form you need
-  const attributeToChange = event.target.name;
-  //define the values for those attributes
-  const editValue = event.target.value;
+      <div className="profile-section">
+        <h3>Account</h3>
+        <ul>
+          <li>User ID: {user.id}</li>
+          <li>Email: {user.email}</li>
+        </ul>
+      </div>
 
-  const updatedUser = {...user};
-  updatedUser[attributeToChange] = editValue;
-  // console.log(updatedUser);
-  setEditUser(updatedUser);
-}
+      <div className="profile-section">
+        <h3>History</h3>
+        <ul>
+          {history.map((book) => (
+            <li key={book.id}>{`${book.title} by ${book.author}`}</li>
+          ))}
+        </ul>
+      </div>
 
-const handleSubmit = (event) => {
-    event.preventDefault();
-    props.updateUserProfile(user);
-    props.setIsEdit(false);
-    navigate('/');
-}
-
-return (
-<>
-<div className="container py-5 mb-5">
-<h5><FontAwesomeIcon icon="pencil" /> Edit User Profile</h5>
-
-
-<div className="table center">
-
-<form onSubmit={handleSubmit} autoComplete="off">
-<div className="mb-3 pb-1">
-    <label htmlFor="firstName" className="form-label">First Name</label>
-    <input className="form-control" id="firstName" name="firstName" type="text" onChange={handleChange} value={user.firstName} required />
-</div>
-<div className="mb-3 pb-1">
-    <label htmlFor="lastName" className="form-label">Last Name</label>
-    <input className="form-control" id="lastName" name="lastName" type="text" onChange={handleChange} value={user.lastName} required />
-</div>
-
-<div className="mb-3 pb-1">
-    <label htmlFor="emailAddress" className="form-label">Email Address</label>
-    <input className="form-control" id="emailAddress" name="emailAddress" type="email" onChange={handleChange} value={user.emailAddress} required />
-</div>
-
-<div className="mb-3 pb-1">
-    <label htmlFor="password" className="form-label">Reset Password (Optional)</label>
-    <input className="form-control" id="password" name="password" type="password" onChange={handleChange} value={null} />
-</div>
-
-
-<div className="mb-3 pb-1">
-    <label htmlFor="phoneNumber" className="form-label">Phone Number (Optional)</label>
-    <input className="form-control" id="phoneNumber" name="phoneNumber" type="number" onChange={handleChange} value={user.phoneNumber} />
-</div>
-
-  <br />
-   <button className="btn btn-warning" type="submit">Update</button>
-</form>
-
-</div>
-</div>
-</>
-)
-}
+      <div className="profile-section">
+        <h3>Favorites</h3>
+        <ul>
+          {favorites.map((book) => (
+            <li key={book.id}>{`${book.title} by ${book.author}`}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
