@@ -15,7 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import About from './pages/About';
 import Home from './pages/Home';
 import ProfilePage from './components/registration/Profile';
-
+import Category from './pages/category/Category'
+import Book from './pages/book/Book';
 
 
 const passToken =() => { 
@@ -224,7 +225,8 @@ const onLogoutHandler = (e) => {
           <Route path="/about" element={<About/>}></Route>
           <Route path='/home' element={<Home/>}> </Route>
           <Route path='/profile' element={<ProfilePage/>}></Route>
-          {/* <Route path='/profile' element={isAuth ? <profile userData={userData} /> :  <Signin login={loginHandler} />}></Route> */}
+          <Route path='/category' element={<Category/>}></Route>
+          <Route path='/book' element={<Book/>}></Route>
         </Routes>
       </main>
     </div>
