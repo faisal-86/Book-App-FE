@@ -1,6 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from 'react-bootstrap';
+
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import  Axios  from 'axios';
@@ -10,9 +10,13 @@ import Signup from './components/registration/SignUp';
 import Signin from './components/registration/SignIn';
 import Dashboard from './pages/dashboard/Dashboard';
 import BookEditForm from './pages/book/BookEditForm';
-
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import About from './pages/About';
-
+import Home from './pages/Home';
+import ProfilePage from './components/registration/Profile';
+import Category from './pages/category/Category'
+import Book from './pages/book/Book';
 
 
 const passToken =() => { 
@@ -147,7 +151,7 @@ const onLogoutHandler = (e) => {
            <Link to="/about"> <button type="button" className="btn btn-info me-5 px-4 text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">About</button></Link>
             </li>
     
-    <Link class="navbar-brand text-white px-5" href="/">Navbar</Link>
+    <Link to="/" class="navbar-brand text-white px-5">Novagram</Link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -165,9 +169,49 @@ const onLogoutHandler = (e) => {
     </div>
   </div>
 </nav>
-<nav class="navla">
 
+
+
+
+
+<nav class="navla">
+  <div class="textbara">
+  
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col-sm">
+            <Link to="/home" className='homelink'><i class="bi bi-house-door-fill"></i></Link>
+          </div>
+          <div class="col-sm">
+            <Link to="category" className='homelink'>Category</Link>
+          </div>
+          <div class="col-sm">
+            <Link to="book" className='homelink'>Books</Link>
+          </div>
+          <div class="col-sm">
+            <Link to="manga" className='homelink'>Manga</Link>
+          </div>
+        </div>
+      </div>
+
+      <div class="col reper">
+        <div class="row justify-content-end">
+          <div class="col-sm">
+            <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+          </div>
+          <div class="col-sm">
+            <Link to="/signin" className="btn btn-outline-success me-2"><i class="bi bi-box-arrow-in-right"></i> Sign In</Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
+
    
         
 
@@ -179,6 +223,10 @@ const onLogoutHandler = (e) => {
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
           <Route path="/signin" element={isAuth ? <Dashboard userData={userData} /> : <Signin login={loginHandler} />}></Route>
           <Route path="/about" element={<About/>}></Route>
+          <Route path='/home' element={<Home/>}> </Route>
+          <Route path='/profile' element={<ProfilePage/>}></Route>
+          <Route path='/category' element={<Category/>}></Route>
+          <Route path='/book' element={<Book/>}></Route>
         </Routes>
       </main>
     </div>

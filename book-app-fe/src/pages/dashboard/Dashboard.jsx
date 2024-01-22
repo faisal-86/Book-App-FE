@@ -8,7 +8,7 @@ export default function Dashboard(props) {
     <>
 <div className="container mt-5">
   
-    <h4>Dashboard - <span className="btn btn-primary">{props.userData.userType == 1 ? "Administrator" : props.userData.userType == 2 ? "Scientist" : props.userData.userType == 3 ? "Contributor" : "" }</span></h4>
+    <h4>Dashboard - <span className="btn btn-primary">{props.userData.userRole == 1 ? "Admin" : props.userData.userRole == 2 ? "User" : props.userData.userRole == 3 ? "Guest" : "" }</span></h4>
 
     <p>Welcome {props.userData.firstName} {props.userData.lastName},</p>
     
