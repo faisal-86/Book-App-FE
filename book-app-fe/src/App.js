@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import About from './pages/About';
 import Home from './pages/Home';
 import ProfilePage from './components/registration/Profile';
-import UserEditForm from './components/admin/UserEditForm';
+
 
 
 const passToken =() => { 
@@ -217,9 +217,6 @@ const onLogoutHandler = (e) => {
 
     <div className="container-fluid p-0">
       <main>
-
-
-        <UserEditForm/>
         <Routes>
           
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
