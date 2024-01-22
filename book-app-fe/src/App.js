@@ -1,6 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from 'react-bootstrap';
+
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import  Axios  from 'axios';
@@ -9,7 +9,7 @@ import React from 'react'
 import Signup from './components/registration/SignUp';
 import Signin from './components/registration/SignIn';
 import Dashboard from './pages/dashboard/Dashboard';
-import BookEditForm from './pages/book/BookEditForm';
+import Home from './pages/Home';
 
 const passToken =() => { 
   return { headers: { "Authorization": "Bearer " + localStorage.getItem("token")}};
@@ -139,7 +139,7 @@ const onLogoutHandler = (e) => {
     <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+         <Link to='/home' className="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
           <span className="fs-2">Novagram</span>
         </Link>
         <div className="collapse navbar-collapse">
@@ -194,7 +194,8 @@ const onLogoutHandler = (e) => {
       <main>
         <Routes>
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
-          <Route path="/signin" element={isAuth ? <Dashboard userData={userData} /> : <Signin login={loginHandler} />}></Route>
+          <Route path="/signin" element={isAuth ? <Dashboard userData={userData} /> : <Signin login={loginHandler} />}></Route>       
+          <Route path='/home' element={ <Home/>} />
         </Routes>
       </main>
     </div>
