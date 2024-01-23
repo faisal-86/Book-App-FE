@@ -130,6 +130,14 @@ const registerHandler = (user) => {
     console.log(error);
   })
 }
+const onLogoutHandler = (e) => {
+  e.preventDefault();
+  localStorage.removeItem("token");
+  setSignedUp(false);
+  setIsAuth(false);
+  setUser(null);
+  navigate('/');
+};
 
   
   return(
@@ -190,15 +198,18 @@ const registerHandler = (user) => {
       <div class="col reper">
         <div class="row justify-content-end">
           <div class="col-sm">
-            <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+            {/* <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link> */}
           </div>
           <div className="col-sm">
       {isAuth ? (
-        <Dropdown/>
+      <Link onClick={onLogoutHandler}>logout</Link>
       ) : (
+        <>
+        <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
         <Link to="/signin" className="btn btn-outline-success me-2">
           <i className="bi bi-box-arrow-in-right"></i>
         </Link>
+        </>
       )}
     </div>
         </div>
