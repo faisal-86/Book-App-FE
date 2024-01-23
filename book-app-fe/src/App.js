@@ -20,7 +20,7 @@ import Dropdown from './components/registration/Dropdown';
 
 
 import BookDetail from './pages/book/BookDetail';
-=
+
 // import { useNavigate } from 'react-router-dom';
 
 
@@ -217,7 +217,6 @@ console.log("MOO",user)
           <div class="col-sm">
             <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
           </div>
-<<<<<<< HEAD
       {isAuth ? (
         <Dropdown/>
       ) : (
@@ -228,17 +227,6 @@ console.log("MOO",user)
         <Link to="/signin" className="btn btn-outline-success me-2">
           <i className="bi bi-box-arrow-in-right"></i>
         </Link>
-=======
-          <div className="col-sm">
-          {isAuth ? (
-  <Dropdown user={user} />
-) : (
-  <Link to="/signin" className="btn btn-outline-success me-2">
-    <i className="bi bi-box-arrow-in-right"></i>
-  </Link>
-)}
-
->>>>>>> 348e8bdf8cb26984bf18f3e1e6344a951bcff880
     </div>
 
       )}
