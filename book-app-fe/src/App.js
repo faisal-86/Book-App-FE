@@ -143,14 +143,6 @@ const registerHandler = (user) => {
     console.log(error);
   })
 }
-const onLogoutHandler = (e) => {
-  e.preventDefault();
-  localStorage.removeItem("token");
-  setSignedUp(false);
-  setIsAuth(false);
-  setUser(null);
-  navigate('/');
-};
 
   const onLogoutHandler = (e) => {
     e.preventDefault();
@@ -223,20 +215,18 @@ console.log("MOO",user)
       <div class="col reper">
         <div class="row justify-content-end">
           <div class="col-sm">
-            {/* <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link> */}
+            <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
           </div>
       {isAuth ? (
-      <Link onClick={onLogoutHandler}>logout</Link>
+        <Dropdown/>
       ) : (
+        <div className="col-sm">
 
-        <>
         <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+
         <Link to="/signin" className="btn btn-outline-success me-2">
           <i className="bi bi-box-arrow-in-right"></i>
         </Link>
-        </>
-      )}
-
     </div>
 
       )}
@@ -278,7 +268,7 @@ console.log("MOO",user)
 
   <section class="">
     <div class="container text-center text-md-start mt-5">
-      <div class="row mt-3">
+      <div class="row mt-3">y
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <h6 class="text-uppercase fw-bold mb-4">
             <i class="fas fa-gem me-3"></i>Novagram
