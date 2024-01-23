@@ -26,12 +26,31 @@ const onLogoutHandler = (e) => {
 
   const Dropdown = (
     <div className="dropdown-content">
-      {/* <a href="/profile">Profile</a>
-      <a href="/profile/histroy">History</a> */}
+      <a href="/profile">Profile</a>
+      <a href="/profile/histroy">History</a>
       <Link onClick={onLogoutHandler}>logout</Link>
       
     </div>
   );
+
+// {isAuth ? 
+//   <>
+//       <div className="dropdown-content">
+//       <a href="/profile">Profile</a>
+//       <a href="/profile/histroy">History</a>
+//       <Link onClick={onLogoutHandler}>logout</Link>
+//     </div>
+//   :
+//   <div className="dropdown-content">
+//   <a href="/profile">Profile</a>
+//   <a href="/profile/histroy">History</a>
+//   <Link onClick={onLogoutHandler}>logout</Link>
+  
+// </div>
+//   </> 
+
+// }
+
 
   return (
     <div className="dropdown">
