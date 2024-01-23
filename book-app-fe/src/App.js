@@ -64,7 +64,6 @@ const user = getUser();
   } else {
     //else set to false/null and remove token from local storage
     localStorage.removeItem("token");
-    setSignedUp(true);
     setIsAuth(false);
     setUser(null);
   }
