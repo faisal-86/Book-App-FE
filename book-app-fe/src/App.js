@@ -18,6 +18,7 @@ import ProfilePage from './components/registration/Profile';
 import Category from './pages/category/Category'
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
+import BookDetail from './pages/book/BookDetail';
 
 const passToken =() => { 
   return { headers: { "Authorization": "Bearer " + localStorage.getItem("token")}};
@@ -31,8 +32,8 @@ const [userRole, setUserRole] = useState(0);
 const [userData, setuserData] = useState({});
 const navigate = useNavigate();
 const [warning, setWarning] = useState('');
-const [isEdit, setIsEdit] = useState(false);
-const [isEditUser , setIsEditUser] = useState(false);
+// const [isEdit, setIsEdit] = useState(false);
+// const [isEditUser , setIsEditUser] = useState(false);
 
 const fetchUserData = (id) => {
   Axios.post("user/fetch", { userID: id })
@@ -70,20 +71,20 @@ const user = getUser();
 
 }, []);
 
-const editView = (id) => {
-  console.log("passToken",passToken());
-  Axios.get(`user/edit?id=${id}`, passToken())
-  .then( ( res ) => {
-      console.log("Loaded User Profile  Information");
-      console.log(res.data.user);
-      let user = res.data.user;
-      setIsEdit(true);
-  })
-  .catch((error) => {
-      console.log("Error loading user Information: ");
-      console.log(error);
-  })
-}
+// const editView = (id) => {
+//   console.log("passToken",passToken());
+//   Axios.get(`user/edit?id=${id}`, passToken())
+//   .then( ( res ) => {
+//       console.log("Loaded User Profile  Information");
+//       console.log(res.data.user);
+//       let user = res.data.user;
+//       setIsEdit(true);
+//   })
+//   .catch((error) => {
+//       console.log("Error loading user Information: ");
+//       console.log(error);
+//   })
+// }
 
 
 const loginHandler = (credentials) => {
@@ -233,7 +234,7 @@ const registerHandler = (user) => {
           <Route path='/profile' element={<ProfilePage/>}></Route>
           <Route path='/category' element={<Category/>}></Route>
           <Route path='/book' element={<Book/>}></Route>
-          
+          <Route path='/book/show/:id' element={<BookDetail/>}></Route>
         </Routes>
       </main>
     </div>
@@ -244,26 +245,7 @@ const registerHandler = (user) => {
       <span>Get connected with us on social networks:</span>
     </div>
 
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
+
   </section>
 
   <section class="">
