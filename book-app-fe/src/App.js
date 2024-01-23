@@ -17,7 +17,7 @@ import Home from './pages/Home';
 import ProfilePage from './components/registration/Profile';
 import Category from './pages/category/Category'
 import Book from './pages/book/Book';
-
+import Dropdown from './components/registration/Dropdown';
 
 const passToken =() => { 
   return { headers: { "Authorization": "Bearer " + localStorage.getItem("token")}};
@@ -190,7 +190,7 @@ const registerHandler = (user) => {
             <Link to="category" className='homelink'>Category</Link>
           </div>
           <div class="col-sm">
-            <Link to="/update" className='homelink'>Updte</Link>
+            <Link to="/book" className='homelink'>Books</Link>
           </div>
           <div class="col-sm">
             <Link to="manga" className='homelink'>Manga</Link>
@@ -203,9 +203,15 @@ const registerHandler = (user) => {
           <div class="col-sm">
             <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
           </div>
-          <div class="col-sm">
-            <Link to="/signin" className="btn btn-outline-success me-2"><i class="bi bi-box-arrow-in-right"></i></Link>
-          </div>
+          <div className="col-sm">
+      {isAuth ? (
+        <Dropdown/>
+      ) : (
+        <Link to="/signin" className="btn btn-outline-success me-2">
+          <i className="bi bi-box-arrow-in-right"></i>
+        </Link>
+      )}
+    </div>
         </div>
       </div>
     </div>
