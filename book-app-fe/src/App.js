@@ -130,14 +130,14 @@ const registerHandler = (user) => {
     console.log(error);
   })
 }
-const onLogoutHandler = (e) => {
-  e.preventDefault();
-  localStorage.removeItem("token");
-  setSignedUp(false);
-  setIsAuth(false);
-  setUser(null);
-  navigate('/');
-}
+  const onLogoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setSignedUp(false);
+    setIsAuth(false);
+    setUser(null);
+    navigate('/');
+  }
 
 
 

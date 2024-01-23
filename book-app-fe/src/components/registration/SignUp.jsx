@@ -44,7 +44,7 @@ return (
 
                 <div className="mb-3">
                   <label htmlFor="phoneNumber" className="form-label">Phone Number (Optional)</label>
-                  <input type="number" className="form-control" id="phoneNumber" name="phoneNumber" onChange={handleChange} />
+                  <input type="string" className="form-control" id="phoneNumber" name="phoneNumber" onChange={handleChange} />
                 </div>
 
                 <div className="mb-3">
