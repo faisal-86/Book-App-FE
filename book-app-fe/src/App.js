@@ -227,6 +227,7 @@ const registerHandler = (user) => {
           <Route path='/profile' element={<ProfilePage/>}></Route>
           <Route path='/category' element={<Category/>}></Route>
           <Route path='/book' element={<Book/>}></Route>
+          
         </Routes>
       </main>
     </div>
