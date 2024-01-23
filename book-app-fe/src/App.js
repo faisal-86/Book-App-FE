@@ -10,8 +10,6 @@ import Signup from './components/registration/SignUp';
 import Signin from './components/registration/SignIn';
 import Dashboard from './pages/dashboard/Dashboard';
 import BookEditForm from './pages/book/BookEditForm';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import About from './pages/About';
 import Home from './pages/Home';
 import ProfilePage from './components/registration/Profile';
@@ -131,17 +129,6 @@ const registerHandler = (user) => {
     console.log(error);
   })
 }
-  const onLogoutHandler = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    setSignedUp(false);
-    setIsAuth(false);
-    setUser(null);
-    navigate('/');
-  }
-
-
-
 
   
   return(
