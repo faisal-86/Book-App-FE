@@ -25,6 +25,7 @@ export default function BookDetail(props) {
 
 
   return (
+    
     <div className="container">
       <div className="row">
       <div className="col-md-6 "> 
@@ -81,4 +82,5 @@ export default function BookDetail(props) {
       </div>
     </div>
   );
+
 }

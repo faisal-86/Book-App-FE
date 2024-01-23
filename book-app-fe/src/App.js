@@ -216,16 +216,19 @@ console.log("MOO",user)
           <div class="col-sm">
             <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
           </div>
-          <div className="col-sm">
-          {isAuth ? (
-  <Dropdown user={user} />
-) : (
-  <Link to="/signin" className="btn btn-outline-success me-2">
-    <i className="bi bi-box-arrow-in-right"></i>
-  </Link>
-)}
+      {isAuth ? (
+        <Dropdown/>
+      ) : (
+        <div className="col-sm">
 
+        <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+
+        <Link to="/signin" className="btn btn-outline-success me-2">
+          <i className="bi bi-box-arrow-in-right"></i>
+        </Link>
     </div>
+
+      )}
         </div>
       </div>
     </div>
