@@ -22,7 +22,7 @@ export default function Category(props) {
     <div style={{ display: 'flex', justifyContent: 'center', 
     alignItems: 'center', height: '100vh', gap: '10px', paddingBottom: '200px' }}>
 {
-  console.log('ZAG===================')}{
+  console.log('MOO===================')}{
   console.log(category)
 }
 {category.map(category => (
@@ -39,7 +39,6 @@ export default function Category(props) {
       </div>
     ))}
   
-        
 
     </div>
 

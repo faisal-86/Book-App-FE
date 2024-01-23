@@ -156,7 +156,6 @@ const registerHandler = (user) => {
 
 
 console.log("MOO",user)
-
   
   return(
     <>
