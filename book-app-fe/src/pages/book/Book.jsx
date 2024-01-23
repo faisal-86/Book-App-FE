@@ -1,37 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
+import axios from 'axios';
+import { Card } from 'react-bootstrap';
 
 export default function BookCard() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    // Fetch books when the component mounts
-    Axios.get('/book/index')
+    axios.get('/book/index')
       .then(response => {
         setBooks(response.data.books);
       })
       .catch(error => {
         console.error('Error fetching books:', error);
       });
-  }, []); // The empty dependency array ensures the effect runs only once on mount
+  }, []); 
 
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', gap: '10px', paddingBottom: '200px' }}>
       {books.map(book => (
-          <div className="card" key={book._id}>
-            <Link to={`/book/detail?id=${book._id}`}>
-              <img src={book.image[0]} alt={`Cover for ${book.title}`} style={{ height: 200, width: 150 }} />
+        <div key={book._id}>
+          <Card style={{ width: '18rem', maxHeight: '100%' }}>
+            <Link to={`/book/show/${book._id}`}>
+              <img src={book.image[0]} alt={`Cover for ${book.title}`} style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} />
             </Link>
-            <div className="card-body">
+            <div className="card-body" style={{ maxHeight: '50px' }}>
               <h5 className="card-title">{book.title}</h5>
-              <p className="card-text">Author: {book.author}</p>
-              <p className="card-text">ISBN: {book.isbn}</p>
-              <p className="card-text">Publish Date: {new Date(book.publish_date).toLocaleDateString()}</p>
-              <p className="card-text">Category: {book.category ? book.category.name : 'Uncategorized'}</p>
-              {/* Add more details as needed */}
             </div>
-          </div>
+          </Card>
+        </div>
       ))}
     </div>
   );
