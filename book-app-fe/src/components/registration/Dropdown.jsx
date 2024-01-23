@@ -25,6 +25,7 @@ const onLogoutHandler = (e) => {
 
 
   const Dropdown = (
+
     <div className="">
       <a href="/profile">Profile</a>
       <a href="/profile/histroy">History</a> 
@@ -33,8 +34,9 @@ const onLogoutHandler = (e) => {
     </div>
   );
 
+
   return ( 
-    
+
     <div className="dropdown">
       <Link className="btn btn-outline-success me-2 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i className="bi bi-box-arrow-in-right"></i>
