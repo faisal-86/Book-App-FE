@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,31 +16,34 @@ email: '',
 });
 
 useEffect(() => {
+  const fetchUserData = async () => {
+    try {
+      const response = await Axios.get(`/user/detail?id=${props.user.id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
 
-const fetchUserData = async () => {
-try {
-  const response = await Axios.get('/user/detail?id='+props.user.id, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-  });
-  console.log(response.data, 'data response');
-  if (response.data.user) {
-    setUser(response.data.user);
-  } else {
-    console.log('User data not found');
-    // Handle the case where user data is not available
-  }
-} catch (error) {
-  console.error(error);
-  // Handle error (e.g., redirect to login page)
-}
-};
+      console.log(response.data, 'data response');
 
-if(props.user.hasOwnProperty('id')){
+      if (response.data && response.data.user) {
+        setUser(response.data.user);
+      } else {
+        console.log('User data not found');
+        // Handle the case where user data is not available
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle error (e.g., redirect to login page)
+    }
+  };
+
+  // Check if props.user has the 'id' property before calling fetchUserData
+  if (props.user && props.user.id) {
     fetchUserData();
-}
+  }
 }, [props.user]);
+
 
 
 
