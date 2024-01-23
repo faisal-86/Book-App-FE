@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import  Axios  from 'axios';
 import {jwtDecode} from "jwt-decode"
+
 import React from 'react'
 import Signup from './components/registration/SignUp';
 import Signin from './components/registration/SignIn';
@@ -16,7 +17,12 @@ import ProfilePage from './components/registration/Profile';
 import Category from './pages/category/Category'
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
+
+
 import BookDetail from './pages/book/BookDetail';
+=
+// import { useNavigate } from 'react-router-dom';
+
 
 const passToken =() => { 
   return { headers: { "Authorization": "Bearer " + localStorage.getItem("token")}};
@@ -34,15 +40,21 @@ const [warning, setWarning] = useState('');
 // const [isEditUser , setIsEditUser] = useState(false);
 
 const fetchUserData = (id) => {
-  Axios.post("user/fetch", { userID: id })
-  .then((response) => {
-    setuserData(response.data.userDetails);
-    setIsAuth(true);
+  Axios.get("/user/detail", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   })
-  .catch((error) => {
-    console.log(error);
-  })
-}
+    .then((response) => {
+      setuserData(response.data.userDetails);
+      setIsAuth(true);
+    })
+    .catch((error) => {
+      console.log(error);
+      // Handle error (e.g., redirect to login page)
+    });
+};
+
 const getUser = () => {
   const token = getToken();
   //need to install jwtDecode (npm i jwt-decode) in the F.E.
@@ -50,16 +62,18 @@ const getUser = () => {
 }
 const getToken = () => {
   const token = localStorage.getItem("token");
+  console.log("TOOOOOKEN",token)
   return token;
 }
 useEffect(() => {
-const user = getUser();
+const guser = getUser();
   //if there is a user then keep everything in check
-  if(user){
+  if(guser != null){
     setIsAuth(true);
-    setUser(true);
+    setUser(guser);
     setUserRole(userRole);
-  fetchUserData(user.id);
+    console.log("the user is",guser)
+  fetchUserData(guser.id);
   } else {
     //else set to false/null and remove token from local storage
     localStorage.removeItem("token");
@@ -96,13 +110,13 @@ const loginHandler = (credentials) => {
     if(token != null){
       //store the token in the browser local storage
       localStorage.setItem("token", token);
-      const user = getUser();
+      const guser = getUser();
       if(user){
         setSignedUp(false);
         navigate('/');
-        fetchUserData(user.id);
-      user ? setIsAuth(true) : setIsAuth(false);
-      user ? setUser(user) : setUser(null);
+        fetchUserData(guser.id);
+      guser ? setIsAuth(true) : setIsAuth(false);
+      guser ? setUser(guser) : setUser(null);
 
       }
     }
@@ -111,7 +125,6 @@ const loginHandler = (credentials) => {
     console.log(error);
     //reset the user and log them out when there is any error with login handling
     setIsAuth(false);
-    setUser(false);
     setUser(null);
   })
 }
@@ -129,6 +142,19 @@ const registerHandler = (user) => {
     console.log(error);
   })
 }
+
+  const onLogoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setSignedUp(false);
+    setIsAuth(false);
+    setUser(null);
+    navigate('/');
+  }
+
+
+
+console.log("MOO",user)
 
   
   return(
@@ -191,6 +217,7 @@ const registerHandler = (user) => {
           <div class="col-sm">
             <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
           </div>
+<<<<<<< HEAD
       {isAuth ? (
         <Dropdown/>
       ) : (
@@ -201,6 +228,17 @@ const registerHandler = (user) => {
         <Link to="/signin" className="btn btn-outline-success me-2">
           <i className="bi bi-box-arrow-in-right"></i>
         </Link>
+=======
+          <div className="col-sm">
+          {isAuth ? (
+  <Dropdown user={user} />
+) : (
+  <Link to="/signin" className="btn btn-outline-success me-2">
+    <i className="bi bi-box-arrow-in-right"></i>
+  </Link>
+)}
+
+>>>>>>> 348e8bdf8cb26984bf18f3e1e6344a951bcff880
     </div>
 
       )}
@@ -222,10 +260,11 @@ const registerHandler = (user) => {
           <Route path="/signin" element={<Signin login={loginHandler} />}></Route>
           <Route path="/about" element={<About/>}></Route>
           <Route path='/home' element={<Home/>}> </Route>
-          <Route path='/profile' element={<ProfilePage/>}></Route>
+          <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
           <Route path='/category' element={<Category/>}></Route>
           <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
+
         </Routes>
       </main>
     </div>
