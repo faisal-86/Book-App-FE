@@ -221,7 +221,7 @@ const registerHandler = (user) => {
         <Routes>
           
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
-          <Route path="/signin" element={isAuth ? <Dashboard userData={userData} /> : <Signin login={loginHandler} />}></Route>
+          <Route path="/signin" element={<Signin login={loginHandler}/>}/>
           <Route path="/about" element={<About/>}></Route>
           <Route path='/home' element={<Home/>}> </Route>
           <Route path='/profile' element={<ProfilePage/>}></Route>
