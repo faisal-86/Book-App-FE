@@ -24,6 +24,7 @@ import BookCreateForm from './pages/book/BookCreateForm';
 
 
 import BookDetail from './pages/book/BookDetail';
+import Footer from './pages/Footer';
 
 // import { useNavigate } from 'react-router-dom';
 
@@ -168,6 +169,7 @@ console.log("MOO",user)
   
   return(
     <>
+
     {/* role:{userData?.role} *** */}
     <nav class="navbar navbar-expand-lg bg-dark w-auto p-4">
   <div class="container-fluid">
@@ -187,102 +189,56 @@ console.log("MOO",user)
            <Link to="/about"> <button type="button" className="btn btn-info me-5 px-4 text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">About</button></Link>
             </li>
 
-    </div>
-  </div>
-</nav>
 
-
-
-
-
-<nav class="navla">
-  <div class="textbara">
-  
-  </div>
-  <div class="container">
-    <div class="row" >
-      <div class="col">
-        <div class="row">
-
-
-          <div class="col-sm" style={{display:'flex' , justifyContent:'space-between'}}>
-            <Link to="/home" className='homelink'>
-              <i class="bi bi-house-door-fill" >
-                Home
-              </i>
-              </Link>
- 
-            <Link to="category" className='homelink'>
-              <i class="bi bi-collection">Category</i>
+<nav className="bg-dark text-white py-4">
+  <div className="container">
+    <div className="row">
+      <div className="col">
+        <div className="row">
+          <div style={{}}>
+            <Link to="/home" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+              <i className="bi bi-house-door-fill">Home</i>
             </Link>
-
-            <Link to="/book" className='homelink'>
-            <i class="bi bi-book"> Books</i>
-
+            <Link to="category" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+              <i className="bi bi-collection">Category</i>
             </Link>
-
-          <div class="col-sm">
-            <Link to="uupdate" className='homelink'>update</Link>
+            <Link to="/book" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+              <i className="bi bi-book">Books</i>
+            </Link>
           </div>
         </div>
       </div>
-
       <div className="col reper">
-      <div className="row justify-content-end">
-
-        <div>
-
-          {isAuth ? (
-            // Render the fields when the user is authenticated
-            <div>
-    
-
-              <Link to="/profile" className="homelink">
-                <i className="bi bi-person-fill" style={{ fontSize: '25px', padding:'10px' }}>Profile</i>
-              </Link>
-
-              <Link to="/library" className="homelink">
-                <i class="bi bi-bookmark-heart-fill" style={{ fontSize: '25px' ,padding:'10px' }}> Library</i>
-
-              </Link>
-
-              <Link className="homelink" onClick={onLogoutHandler}>
-                <i  class="bi bi-door-closed-fill" style={{ fontSize: '25px' }}>
-                  Log-Out
-                </i>
-              </Link>
-            </div>
-          ) : (
-            // Render something else when the user is not authenticated
-            <div>
-                <Link to="/signup" className="homelink" style={{ fontSize: '25px' }}>
-                <i class="bi bi-sign-intersection-fill">
-                  Sign-Up
-                  </i>
+        <div className="row justify-content-end">
+          <div>
+            {isAuth ? (
+              <div>
+                <Link to="/profile" className="homelink">
+                  <i className="bi bi-person-fill" style={{ fontSize: '25px', padding: '10px', color: 'white' }}>Profile</i>
                 </Link>
-
-                <Link to="/signin" className="homelink" style={{ fontSize: '25px' , padding:'20px'}}>
-                  <i className="bi bi-door-open">
-                    Sign-In
-                  </i>
+                <Link to="/library" className="homelink">
+                  <i className="bi bi-bookmark-heart-fill" style={{ fontSize: '25px', padding: '10px', color: 'white' }}> Library</i>
                 </Link>
-
+                <Link className="homelink" onClick={onLogoutHandler}>
+                  <i className="bi bi-door-closed-fill" style={{ fontSize: '25px', color: 'white' }}>Log-Out</i>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link to="/signup" className="homelink" style={{ fontSize: '25px', color: 'white' }}>
+                  <i className="bi bi-sign-intersection-fill">Sign-Up</i>
+                </Link>
+                <Link to="/signin" className="homelink" style={{ fontSize: '25px', padding: '20px', color: 'white' }}>
+                  <i className="bi bi-door-open">Sign-In</i>
+                </Link>
+              </div>
+            )}
           </div>
-
-
-          )}
         </div>
       </div>
     </div>
-
-    </div>
   </div>
-  </div>
-
 </nav>
-
-   
-        
 
 
     <div className="container-fluid p-0">
@@ -307,7 +263,7 @@ console.log("MOO",user)
       </main>
     </div>
 
-    <footer className="text-center text-lg-start bg-body-tertiary text-muted">
+    {/* <footer className="text-center text-lg-start bg-body-tertiary text-muted">
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <div class="me-5 d-none d-lg-block">
       <span>Get connected with us on social networks:</span>
@@ -384,7 +340,9 @@ console.log("MOO",user)
     <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
   </div> 
 
-</footer>
+</footer> */}
+
+<Footer/>
 
   </>
 );
