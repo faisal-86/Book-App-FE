@@ -41,12 +41,14 @@ const [warning, setWarning] = useState('');
 // const [isEditUser , setIsEditUser] = useState(false);
 
 const fetchUserData = (id) => {
+  console.log('fetching user data');
   Axios.get("/user/detail", {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   })
     .then((response) => {
+      console.log('fetchUserData then');
       setuserData(response.data.userDetails);
       setIsAuth(true);
     })
@@ -67,6 +69,7 @@ const getToken = () => {
   return token;
 }
 useEffect(() => {
+  console.log(isAuth)
 const guser = getUser();
   //if there is a user then keep everything in check
   if(guser != null){
@@ -112,13 +115,13 @@ const loginHandler = (credentials) => {
       //store the token in the browser local storage
       localStorage.setItem("token", token);
       const guser = getUser();
-      if(user){
+      console.log('login', guser)
+      if(guser){
         setSignedUp(false);
-        navigate('/');
+        guser ? setIsAuth(true) : setIsAuth(false);
+        guser ? setUser(guser) : setUser(null);
         fetchUserData(guser.id);
-      guser ? setIsAuth(true) : setIsAuth(false);
-      guser ? setUser(guser) : setUser(null);
-
+        navigate('/');
       }
     }
   })
@@ -154,10 +157,11 @@ const registerHandler = (user) => {
     navigate('/');
   }
 
+  
+
 
 
 console.log("MOO",user)
-
   
   return(
     <>
@@ -207,44 +211,42 @@ console.log("MOO",user)
             <Link to="/book" className='homelink'>Books</Link>
           </div>
 
-          <div class="col-sm">
-        <Link to="/profile" className='homelink'>Profile</Link>
-
-          </div>
-
-
-
-
-
-
-
         </div>
       </div>
 
       <div class="col reper">
         <div class="row justify-content-end">
-        <div className="col-sm">
-            <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
-            <Link to="/signin" className="btn btn-outline-success me-2">
-              <i className="bi bi-box-arrow-in-right"></i></Link>
-        </div>
+  
 
         <div>
-      {isAuth ? (
+
+
+          
+    
+  {isAuth ? (
         // Render the fields when the user is authenticated
         <div>
-          <h1>Welcome, User!</h1>
           {/* Your authenticated user fields go here */}
+        {/* <a href="/profile">Profile</a> */}
+         <Link onClick={onLogoutHandler}>logout</Link>  
+         
+        <Link to="/profile">
+        <i class="bi bi-person-square"></i> </Link>
+
+      
         </div>
       ) : (
         // Render something else when the user is not authenticated
         <div>
-          <h1>Please log in</h1>
           {/* Your login form or other content goes here */}
+          <div className="col-sm">
+            <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+            <Link to="/signin" className="btn btn-outline-success me-2">
+              <i className="bi bi-box-arrow-in-right"></i></Link>
+        </div>
         </div>
       )}
     </div>
-
     
         </div>
       </div>
