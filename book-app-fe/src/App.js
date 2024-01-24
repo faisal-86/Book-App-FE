@@ -52,7 +52,8 @@ const fetchUserData = (id) => {
   })
     .then((response) => {
       console.log('fetchUserData then');
-      setuserData(response.data.userDetails);
+      setuserData(response.data.user);
+      console.log('user detail',response.data);
       setIsAuth(true);
     })
     .catch((error) => {
@@ -156,6 +157,7 @@ const onLogoutHandler = (e) => {
   setSignedUp(false);
   setIsAuth(false);
   setUser(null);
+  setuserData(null)
   navigate('/');
 };
 
@@ -166,6 +168,7 @@ console.log("MOO",user)
   
   return(
     <>
+    {/* role:{userData?.role} *** */}
     <nav class="navbar navbar-expand-lg bg-dark w-auto p-4">
   <div class="container-fluid">
           <Link to="/home">
@@ -291,12 +294,12 @@ console.log("MOO",user)
           <Route path="/about" element={<About/>}></Route>
           <Route path='/home' element={<Home/>}> </Route>
           <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
-          <Route path='/category' element={<Category/>}></Route>
+          <Route path='/category' element={<Category isAdmin={userData?.role === 'admin'}/>}></Route>
           <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
           <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
           <Route path='/category/books/:categoryId' element={<CategoryDetail/>}/>
 
-          <Route path='/book' element={<Book/>}></Route>
+          <Route path='/book' element={<Book isAdmin={userData?.role === 'admin'}/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
           <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
 

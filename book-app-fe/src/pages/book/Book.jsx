@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
 
-export default function BookCard() {
+export default function BookCard(props) {
   const [books, setBooks] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(props.isAdmin); // Assuming you have a state for admin status
 
   useEffect(() => {
     axios.get('/book/index')
@@ -18,10 +19,11 @@ export default function BookCard() {
 
   return (
    <>
+    {isAdmin && (
    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
    <Link className="btn btn-success" to="add">Add Book</Link>
-
    </div>
+    )}
     
     
 
