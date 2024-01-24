@@ -147,17 +147,15 @@ const registerHandler = (user) => {
     console.log(error);
   })
 }
+const onLogoutHandler = (e) => {
+  e.preventDefault();
+  localStorage.removeItem("token");
+  setSignedUp(false);
+  setIsAuth(false);
+  setUser(null);
+  navigate('/');
+};
 
-  const onLogoutHandler = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    setSignedUp(false);
-    setIsAuth(false);
-    setUser(null);
-    navigate('/');
-  }
-
-  
 
 
 
@@ -202,56 +200,40 @@ console.log("MOO",user)
           <div class="col-sm">
             <Link to="/home" className='homelink'><i class="bi bi-house-door-fill"></i></Link>
           </div>
-          
           <div class="col-sm">
             <Link to="category" className='homelink'>Category</Link>
           </div>
-
           <div class="col-sm">
             <Link to="/book" className='homelink'>Books</Link>
           </div>
-
+          <div class="col-sm">
+            <Link to="manga" className='homelink'>Manga</Link>
+          </div>
         </div>
       </div>
+
 
       <div class="col reper">
         <div class="row justify-content-end">
-  
-
-        <div>
-
-
-          
-    
-  {isAuth ? (
-        // Render the fields when the user is authenticated
-        <div>
-          {/* Your authenticated user fields go here */}
-        {/* <a href="/profile">Profile</a> */}
-         <Link onClick={onLogoutHandler}>logout</Link>  
-         
-        <Link to="/profile">
-        <i class="bi bi-person-square"></i> </Link>
-
-      
-        </div>
+          <div class="col-sm">
+            {/* <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link> */}
+          </div>
+      {isAuth ? (
+      <Link onClick={onLogoutHandler}>logout</Link>
       ) : (
-        // Render something else when the user is not authenticated
-        <div>
-          {/* Your login form or other content goes here */}
-          <div className="col-sm">
-            <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
-            <Link to="/signin" className="btn btn-outline-success me-2">
-              <i className="bi bi-box-arrow-in-right"></i></Link>
-        </div>
-        </div>
+
+        <>
+        <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+        <Link to="/signin" className="btn btn-outline-success me-2">
+          <i className="bi bi-box-arrow-in-right"></i>
+        </Link>
+        </>
       )}
     </div>
-    
+
         </div>
       </div>
     </div>
-  </div>
 </nav>
 
    
@@ -276,7 +258,7 @@ console.log("MOO",user)
       </main>
     </div>
 
-<footer  className="text-center text-lg-start bg-body-tertiary text-muted">
+    <footer className="text-center text-lg-start bg-body-tertiary text-muted">
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <div class="me-5 d-none d-lg-block">
       <span>Get connected with us on social networks:</span>
