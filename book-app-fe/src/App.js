@@ -17,6 +17,8 @@ import ProfilePage from './components/registration/Profile';
 import Category from './pages/category/Category'
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
+import MyEpubReader from './pages/book/ReactReader'; // The path to your MyEpubReader component
+
 
 
 
@@ -252,7 +254,9 @@ console.log("MOO",user)
           <Route path='/category' element={<Category/>}></Route>
           <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
-
+          {/* Add the MyEpubReader route here */}
+           {/* <Route path="/reader" element={<MyEpubReader />}></Route> */}
+           <Route path="/reader" element={<MyEpubReader epubUrl="https://raw.githubusercontent.com/faisal-86/Novagram-BE/main/public/uploads/epubs/example.epub" title="Sandi the Kingmaker" />} />
         </Routes>
       </main>
     </div>

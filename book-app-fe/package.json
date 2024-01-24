@@ -15,10 +15,12 @@
     "axios": "^1.6.5",
     "bootstrap": "^5.3.2",
     "dayjs": "^1.11.10",
+    "epubjs": "^0.3.93",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
+    "react-reader": "^2.0.4",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
