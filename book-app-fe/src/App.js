@@ -207,7 +207,7 @@ console.log("MOO",user)
             <Link to="/book" className='homelink'>Books</Link>
           </div>
           <div class="col-sm">
-            <Link to="manga" className='homelink'>Manga</Link>
+            <Link to="uupdate" className='homelink'>update</Link>
           </div>
         </div>
       </div>
@@ -219,7 +219,10 @@ console.log("MOO",user)
             {/* <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link> */}
           </div>
       {isAuth ? (
+        <>
+      <Link to="/profile">profile</Link>
       <Link onClick={onLogoutHandler}>logout</Link>
+      </>
       ) : (
 
         <>
