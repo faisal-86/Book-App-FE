@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Card } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 
 export default function Category(props) {
   const [category, setCategory] = useState([]);
@@ -19,43 +19,28 @@ export default function Category(props) {
   }, []);
 
   return (
-    <>
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-   <Link className="btn btn-success" to="add">Add Category</Link>
-
-   </div>
-
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        gap: "10px",
-        paddingBottom: "200px",
-      }}
-    >
-      {category.map((category) => (
-        <div key={category._id}>
-          <Card style={{ width: "18rem", maxHeight: "100%" }}>
-            <Link to={`/category/view/${category._id}`}>
-              <img
-                src={category.image}
-                alt={`Cover for ${category.name}`}
-                style={{
-                  width: "100%",
-                  maxHeight: "400px",
-                  objectFit: "cover",
-                }}
-              />
-            </Link>
-            <div className="card-body" style={{ maxHeight: "50px" }}>
-              <h5 className="card-title">{category.name}</h5>
-            </div>
-          </Card>
-        </div>
-      ))}
+    <div className="mt-4">
+      <Row xs={1} sm={2} md={3} lg={4} xl={5} className="g-4">
+        {category.map((category) => (
+          <Col key={category._id} className="mb-4">
+            <Card style={{ height: "100%" }}>
+              <Link to={`/category/view/${category._id}`}>
+                <Card.Img
+                  src={category.image}
+                  alt={`Cover for ${category.name}`}
+                  style={{
+                    objectFit: "cover",
+                    height: "200px", // Adjust the height as needed
+                  }}
+                />
+              </Link>
+              <Card.Body>
+                <h5 className="card-title">{category.name}</h5>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </div>
-    </>
   );
 }
