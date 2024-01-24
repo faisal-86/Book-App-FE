@@ -171,7 +171,7 @@ console.log("MOO",user)
           <img src="./logo-white.png" alt="Novagram Logo" style={{ height: '75px' , width: '100px' }} />
           </Link>
 
-    <Link to="/" class="navbar-brand text-white px-5">Novagram</Link>
+    <Link to="/home" class="navbar-brand text-white px-5">Novagram</Link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
