@@ -217,7 +217,7 @@ console.log("MOO",user)
             </Link>
 
           <div class="col-sm">
-            <Link to="manga" className='homelink'>Manga</Link>
+            <Link to="uupdate" className='homelink'>update</Link>
           </div>
         </div>
       </div>
@@ -263,6 +263,7 @@ console.log("MOO",user)
                 </Link>
 
           </div>
+
 
           )}
         </div>
