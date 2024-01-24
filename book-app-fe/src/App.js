@@ -217,11 +217,12 @@ console.log("MOO",user)
         </Link>
         </>
       )}
->>>>>>>>> Temporary merge branch 2
+
     </div>
 
         </div>
       </div>
+    </div>
     </div>
 </nav>
 
