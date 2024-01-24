@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
 
 export default function CategoryDetail(props) {
   const [books, setBooks] = useState([]);
-  const [category, setCategory] = useState(null);
   const [error, setError] = useState(null);
+  const { id } = useParams();
+
+
 
   
 
   useEffect(() => {
-    axios.get('/category/books')
-      .then(response => {
+    axios.get('/category/books?id='+id)
+    .then(response => {
+        console.log('response',response);
         setBooks(response.data.books);
       })
-      .catch(error => {
-        console.error('Error fetching books:', error);
+      .catch(err => {
+        console.error(err);
+        setError("Failed to load books.");
       });
   }, []); 
 
   return (
    <>
-   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-   <Link className="btn btn-success" to="add">Add Book</Link>
-   </div>
+  
 
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', gap: '10px', paddingBottom: '200px' }}>
       {books && books.map(book => (

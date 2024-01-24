@@ -5,8 +5,22 @@ import { Card } from "react-bootstrap";
 
 export default function Category(props) {
   const [category, setCategory] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(props.isAdmin); // Assuming you have a state for admin status
+
 
   useEffect(() => {
+
+    axios.get('/user/detail')
+    .then(response => {
+      setIsAdmin(response.data.isAdmin); // Assuming you get isAdmin property from the server
+    })
+    .catch(error => {
+      console.error('Error fetching user information:', error);
+    });
+
+
+
+
     axios
       .get("/category/index")
       .then((response) => {
@@ -20,10 +34,11 @@ export default function Category(props) {
 
   return (
     <>
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-   <Link className="btn btn-success" to="add">Add Category</Link>
-
-   </div>
+   {isAdmin && (
+     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+       <Link className="btn btn-success" to="add">Add Category</Link>
+     </div>
+   )}
 
     <div
       style={{
