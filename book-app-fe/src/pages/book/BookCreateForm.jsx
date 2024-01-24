@@ -91,7 +91,7 @@ export default function BookCreateForm(props) {
             Book Cover
           </label>
           <input
-            type="text"
+            type="file"
             name="image"
             className="form-control"
             onChange={handleChange}

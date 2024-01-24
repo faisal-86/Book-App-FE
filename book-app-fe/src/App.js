@@ -252,7 +252,7 @@ console.log("MOO",user)
           <Route path='/category' element={<Category/>}></Route>
           <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
-          <Route path="add" element={<BookCreateForm userData={userData} />} />
+          <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
 
         </Routes>
       </main>

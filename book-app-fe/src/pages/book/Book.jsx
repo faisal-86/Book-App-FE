@@ -17,7 +17,16 @@ export default function BookCard() {
   }, []); 
 
   return (
+   <>
+   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+   <Link className="btn btn-success" to="add">Add Product</Link>
+
+   </div>
+    
+    
+
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', gap: '10px', paddingBottom: '200px' }}>
+      
       {books.map(book => (
         <div key={book._id}>
           <Card style={{ width: '18rem', maxHeight: '100%' }}>
@@ -31,5 +40,6 @@ export default function BookCard() {
         </div>
       ))}
     </div>
+    </>
   );
 }
