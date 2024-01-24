@@ -5,24 +5,21 @@ import { useEpub } from './EpubContext';
 const MyEpubReader = () => {
   const { epubPath } = useEpub();
   const title = 'EPUB Reader';
-
   const storageKey = `epubLocation-${title}`;
-
-  const [location, setLocation] = useState(() => {
-    const savedLocation = localStorage.getItem(storageKey);
-    return savedLocation ? savedLocation : undefined;
-  });
+  const [location, setLocation] = useState(localStorage.getItem(storageKey) || undefined);
 
   const onLocationChanged = (newLocation) => {
     setLocation(newLocation);
     localStorage.setItem(storageKey, newLocation);
   };
 
-  // Debugging: Log the EPUB URL
+  const epubFilename = epubPath.split('/').pop();
+  const backendUrl = 'http://localhost:1337';
+  const constructedUrl = `${backendUrl}/uploads/epubs/${epubFilename}`;
+
   useEffect(() => {
-    const constructedUrl = `${window.location.origin}/epubs${epubPath}`; // Construct the EPUB URL
     console.log("EPUB URL:", constructedUrl);
-  }, [epubPath]);
+  }, [constructedUrl]);
 
   useEffect(() => {
     localStorage.setItem(storageKey, location);
@@ -32,7 +29,8 @@ const MyEpubReader = () => {
     <div style={{ position: "relative", height: "100vh" }}>
       {epubPath ? (
         <ReactReader
-          url={`https://raw.githubusercontent.com/faisal-86/Novagram-BE/main/public/uploads/epubs/example.epub`} // Update the URL to use the correct path
+          url={constructedUrl}
+          // url={`https://raw.githubusercontent.com/faisal-86/Novagram-BE/main/public/uploads/epubs/example.epub`} // Update the URL to use the correct path
           // url={`${window.location.origin}/epubs/example.epub`}
           title={title}
           location={location}
