@@ -19,7 +19,7 @@ export default function BookCard() {
   return (
    <>
    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-   <Link className="btn btn-success" to="add">Add Product</Link>
+   <Link className="btn btn-success" to="add">Add Book</Link>
 
    </div>
     
