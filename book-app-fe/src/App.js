@@ -166,8 +166,7 @@ console.log("MOO",user)
           <Link to="/home">
           <img src="./logo-white.png" alt="Novagram Logo" style={{ height: '75px' , width: '100px' }} />
           </Link>
- 
-    
+
     <Link to="/" class="navbar-brand text-white px-5">Novagram</Link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -199,31 +198,54 @@ console.log("MOO",user)
           <div class="col-sm">
             <Link to="/home" className='homelink'><i class="bi bi-house-door-fill"></i></Link>
           </div>
+          
           <div class="col-sm">
             <Link to="category" className='homelink'>Category</Link>
           </div>
+
           <div class="col-sm">
             <Link to="/book" className='homelink'>Books</Link>
           </div>
+
+          <div class="col-sm">
+        <Link to="/profile" className='homelink'>Profile</Link>
+
+          </div>
+
+
+
+
+
+
+
         </div>
       </div>
 
       <div class="col reper">
         <div class="row justify-content-end">
-
-      {isAuth ? (
-        <Dropdown/>
-      ) : (
         <div className="col-sm">
+            <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+            <Link to="/signin" className="btn btn-outline-success me-2">
+              <i className="bi bi-box-arrow-in-right"></i></Link>
+        </div>
 
-        <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
-
-        <Link to="/signin" className="btn btn-outline-success me-2">
-          <i className="bi bi-box-arrow-in-right"></i>
-        </Link>
+        <div>
+      {isAuth ? (
+        // Render the fields when the user is authenticated
+        <div>
+          <h1>Welcome, User!</h1>
+          {/* Your authenticated user fields go here */}
+        </div>
+      ) : (
+        // Render something else when the user is not authenticated
+        <div>
+          <h1>Please log in</h1>
+          {/* Your login form or other content goes here */}
+        </div>
+      )}
     </div>
 
-      )}
+    
         </div>
       </div>
     </div>
