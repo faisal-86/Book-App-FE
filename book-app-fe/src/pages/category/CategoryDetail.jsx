@@ -4,42 +4,45 @@ import axios from 'axios';
 import { Card } from 'react-bootstrap';
 
 export default function CategoryDetail(props) {
-  const [category, setCategory] = useState([]);
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    axios.get('/category/index')
+    axios.get('/category/book')
       .then(response => {
-        setCategory(response.data.category);
+        setBooks(response.data.books);
       })
       .catch(error => {
-        console.error('Error fetching Category:', error);
+        console.error('Error fetching books:', error);
       });
   }, []); 
 
-
   return (
+   <>
+   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+   <Link className="btn btn-success" to="add">Add Book</Link>
+
+   </div>
+    
+    
+
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', gap: '10px', paddingBottom: '200px' }}>
-      {category.map(category => (
-        <div key={category._id}>
+      
+      {books.map(book => (
+        <div key={book._id}>
           <Card style={{ width: '18rem', maxHeight: '100%' }}>
-            <Link to={`/category/show/${category._id}`}>
-              <img src={category.image[0]} alt={`Cover for ${category.name}`} 
-              style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} />
+            <Link to={`/book/show/${book._id}`}>
+              <img src={book.image[0]} alt={`Cover for ${book.title}`} style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} />
             </Link>
             <div className="card-body" style={{ maxHeight: '50px' }}>
-              <h5 className="card-title">{category.name}</h5>
+              <h5 className="card-title">{book.title}</h5>
             </div>
           </Card>
         </div>
       ))}
     </div>
+    </>
   );
-
-
-
-
 }
-
 
 
 

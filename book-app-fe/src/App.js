@@ -14,7 +14,9 @@ import BookEditForm from './pages/book/BookEditForm';
 import About from './pages/About';
 import Home from './pages/Home';
 import ProfilePage from './components/registration/Profile';
-import Category from './pages/category/Category'
+import Category from './pages/category/Category';
+import CategoryCreateForm from './pages/category/CategoryCreateForm';
+import CategoryDetail from './pages/category/CategoryDetail';
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
 import BookCreateForm from './pages/book/BookCreateForm';
@@ -250,6 +252,9 @@ console.log("MOO",user)
           <Route path='/home' element={<Home/>}> </Route>
           <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
           <Route path='/category' element={<Category/>}></Route>
+          <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
+          <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
+
           <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
           <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
