@@ -67,17 +67,12 @@
   color: rgb(0, 36, 68);
 }
 
-.reper{
 
-}
 .navla {
   background-color: #f8f9fa; 
   padding: 10px; 
 }
 
-.textbara {
-  
-}
 
 .homelink {
   text-decoration: none; 
@@ -138,3 +133,4 @@ body{
 .main {
   flex: 1;
 }
+
