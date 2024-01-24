@@ -1,58 +1,64 @@
-import React , {useState} from 'react'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import Axios from 'axios';
+
 
 export default function CategoryCreateForm(props) {
-    const [formData, setFormData] = useState({
-        name: '',
-        book: '',
-        image: null
-      });
+  const [newCategory, setNewCategory] = useState([]);
+  const navigate = useNavigate();
+  
+  const handleChange = (e) => {
+    const category = { ...newCategory };
+    category[e.target.name] = e.target.value;
+    setNewCategory(category);
+  };
+
+  const handleAddCategory = (e) => {
+    e.preventDefault();
+    addCategory(newCategory);
+  };
+
+  function addCategory(category) {
+    Axios.post('/category/create', category, props.headers)
+    .then((category) => {
+      console.log(category);
+      navigate('/category/detail')
+    })
+  }
+
+  
+  return (
+    <div className="container mt-5">
+    <h2>Create New Category</h2>
+    <form onSubmit={handleAddCategory}>
+      <div className="mb-3">
+        <label className="form-label">Category Name:</label>
+        <input type="text" className="form-control" name="title"  onChange={handleChange} placeholder="Enter category name"/>
+      </div>
+
     
-      // Handle form field changes
-      const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: value
-        });
-      };
-    
-      // Handle image upload
-      const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setFormData({
-          ...formData,
-          image: file
-        });
-      };
-    
-      // Handle form submission
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // You can perform additional actions here, such as sending the form data to a server
-        console.log('Form submitted:', formData);
-      };
 
+      
 
-return (
-    <form onSubmit={handleSubmit}>
-      <label> Name: <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
-      </label>
-      <br />
+      <div>
+        <label className="form-label my-3" htmlFor="categoryImage">
+          Category Image
+        </label>
+        <input
+          type="file"
+          name="image"
+          className="form-control"
+          onChange={handleChange}
+          placeholder="Add category image"
+        />
+      </div>
 
-      <label>
-        Book:
-        <input type="text" name="book" value={formData.book} onChange={handleInputChange}/> </label>
+      <div>
+      <input className='btn btn-primary my-3' type="submit" value="Create Category"/>
+      </div>
 
-      <br />
-
-      <label>
-        Image:
-        <input type="file" name='image'  onChange={handleImageChange} placeholder='Add Image' />
-      </label>
-
-      <br />
-
-      <button type="submit">Submit</button>
     </form>
-  );
-};
+  </div>
+
+  )
+}
