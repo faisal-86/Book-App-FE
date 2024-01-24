@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Footer() {
   return (
+  
     <footer className="bg-dark text-white py-2 fixed-bottom">
     <div className="container">
       <div className="row">
