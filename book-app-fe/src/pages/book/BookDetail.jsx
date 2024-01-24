@@ -62,7 +62,7 @@ export default function BookDetail(props) {
               </tr>
               <tr>
                 <th>Category</th>
-                <td>{book.category}</td>
+                <td>{book.category?.name}</td>
               </tr>
               
               

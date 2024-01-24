@@ -5,9 +5,13 @@ import { Card } from 'react-bootstrap';
 
 export default function CategoryDetail(props) {
   const [books, setBooks] = useState([]);
+  const [category, setCategory] = useState(null);
+  const [error, setError] = useState(null);
+
+  
 
   useEffect(() => {
-    axios.get('/category/book')
+    axios.get('/category/books')
       .then(response => {
         setBooks(response.data.books);
       })
@@ -20,14 +24,10 @@ export default function CategoryDetail(props) {
    <>
    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
    <Link className="btn btn-success" to="add">Add Book</Link>
-
    </div>
-    
-    
 
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', gap: '10px', paddingBottom: '200px' }}>
-      
-      {books.map(book => (
+      {books && books.map(book => (
         <div key={book._id}>
           <Card style={{ width: '18rem', maxHeight: '100%' }}>
             <Link to={`/book/show/${book._id}`}>
@@ -43,10 +43,3 @@ export default function CategoryDetail(props) {
     </>
   );
 }
-
-
-
-
-  
-
-

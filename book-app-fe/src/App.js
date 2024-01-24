@@ -273,6 +273,7 @@ console.log("MOO",user)
 
     </div>
   </div>
+  </div>
 
 </nav>
 
@@ -292,6 +293,7 @@ console.log("MOO",user)
           <Route path='/category' element={<Category/>}></Route>
           <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
           <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
+          <Route path='/category/books/:categoryId' element={<CategoryDetail/>}/>
 
           <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
