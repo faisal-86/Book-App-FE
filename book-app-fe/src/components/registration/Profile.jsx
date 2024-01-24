@@ -10,7 +10,7 @@ export default function Profile(props) {
     id: "",
     username: "",
     email: "",
-    // Add other user properties
+    avatar: "",
   });
 
   useEffect(() => {
@@ -102,7 +102,7 @@ export default function Profile(props) {
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
+          {/* <div class="col-md-4">
             <div class="profile-work">
               <p>WORK LINK</p>
               <a href="">Website Link</a>
@@ -122,7 +122,7 @@ export default function Profile(props) {
               <a href="">PHP, .Net</a>
               <br />
             </div>
-          </div>
+          </div> */}
           <div class="col-md-8">
             <div class="tab-content profile-tab" id="myTabContent">
               <div

@@ -17,7 +17,7 @@ import ProfilePage from './components/registration/Profile';
 import Category from './pages/category/Category'
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
-
+import BookCreateForm from './pages/book/BookCreateForm';
 
 
 import BookDetail from './pages/book/BookDetail';
@@ -252,6 +252,7 @@ console.log("MOO",user)
           <Route path='/category' element={<Category/>}></Route>
           <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
+          <Route path="add" element={<BookCreateForm userData={userData} />} />
 
         </Routes>
       </main>
