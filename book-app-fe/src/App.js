@@ -14,9 +14,7 @@ import BookEditForm from './pages/book/BookEditForm';
 import About from './pages/About';
 import Home from './pages/Home';
 import ProfilePage from './components/registration/Profile';
-import Category from './pages/category/Category';
-import CategoryCreateForm from './pages/category/CategoryCreateForm';
-import CategoryDetail from './pages/category/CategoryDetail';
+import Category from './pages/category/Category'
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
 import BookCreateForm from './pages/book/BookCreateForm';
@@ -53,8 +51,7 @@ const fetchUserData = (id) => {
   })
     .then((response) => {
       console.log('fetchUserData then');
-      setuserData(response.data.user);
-      console.log('user detail',response.data);
+      setuserData(response.data.userDetails);
       setIsAuth(true);
     })
     .catch((error) => {
@@ -158,7 +155,6 @@ const onLogoutHandler = (e) => {
   setSignedUp(false);
   setIsAuth(false);
   setUser(null);
-  setuserData(null)
   navigate('/');
 };
 
@@ -169,26 +165,6 @@ console.log("MOO",user)
   
   return(
     <>
-
-    {/* role:{userData?.role} *** */}
-    <nav class="navbar navbar-expand-lg bg-dark w-auto p-4">
-  <div class="container-fluid">
-          <Link to="/home">
-          <img src="./logo-white.png" alt="Novagram Logo" style={{ height: '75px' , width: '100px' }} />
-          </Link>
-
-    {/* <Link to="/home" class="navbar-brand text-white px-5">Novagram</Link> */}
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          </ul>
-
-          <li className="nav-item">
-           <Link to="/about"> <button type="button" className="btn btn-info me-5 px-4 text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">About</button></Link>
-            </li>
-
 
 <nav className="bg-dark text-white py-4">
   <div className="container">
@@ -250,12 +226,8 @@ console.log("MOO",user)
           <Route path="/about" element={<About/>}></Route>
           <Route path='/home' element={<Home/>}> </Route>
           <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
-          <Route path='/category' element={<Category isAdmin={userData?.role === 'admin'}/>}></Route>
-          <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
-          <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
-          <Route path='/category/books/:categoryId' element={<CategoryDetail/>}/>
-
-          <Route path='/book' element={<Book isAdmin={userData?.role === 'admin'}/>}></Route>
+          <Route path='/category' element={<Category/>}></Route>
+          <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
           <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
 
