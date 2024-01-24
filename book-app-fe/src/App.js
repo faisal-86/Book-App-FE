@@ -41,12 +41,14 @@ const [warning, setWarning] = useState('');
 // const [isEditUser , setIsEditUser] = useState(false);
 
 const fetchUserData = (id) => {
+  console.log('fetching user data');
   Axios.get("/user/detail", {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   })
     .then((response) => {
+      console.log('fetchUserData then');
       setuserData(response.data.userDetails);
       setIsAuth(true);
     })
@@ -67,6 +69,7 @@ const getToken = () => {
   return token;
 }
 useEffect(() => {
+  console.log(isAuth)
 const guser = getUser();
   //if there is a user then keep everything in check
   if(guser != null){
@@ -112,13 +115,13 @@ const loginHandler = (credentials) => {
       //store the token in the browser local storage
       localStorage.setItem("token", token);
       const guser = getUser();
-      if(user){
+      console.log('login', guser)
+      if(guser){
         setSignedUp(false);
-        navigate('/');
+        guser ? setIsAuth(true) : setIsAuth(false);
+        guser ? setUser(guser) : setUser(null);
         fetchUserData(guser.id);
-      guser ? setIsAuth(true) : setIsAuth(false);
-      guser ? setUser(guser) : setUser(null);
-
+        navigate('/');
       }
     }
   })
@@ -129,6 +132,7 @@ const loginHandler = (credentials) => {
     setUser(null);
   })
 }
+
 const registerHandler = (user) => {
   Axios.post("auth/signup", user)
   .then((response) => {
@@ -143,15 +147,15 @@ const registerHandler = (user) => {
     console.log(error);
   })
 }
+const onLogoutHandler = (e) => {
+  e.preventDefault();
+  localStorage.removeItem("token");
+  setSignedUp(false);
+  setIsAuth(false);
+  setUser(null);
+  navigate('/');
+};
 
-  const onLogoutHandler = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    setSignedUp(false);
-    setIsAuth(false);
-    setUser(null);
-    navigate('/');
-  }
 
 
 
@@ -161,25 +165,22 @@ console.log("MOO",user)
     <>
     <nav class="navbar navbar-expand-lg bg-dark w-auto p-4">
   <div class="container-fluid">
-  <li className="nav-item">
-           <Link to="/about"> <button type="button" className="btn btn-info me-5 px-4 text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">About</button></Link>
-            </li>
-    
+          <Link to="/home">
+          <img src="./logo-white.png" alt="Novagram Logo" style={{ height: '75px' , width: '100px' }} />
+          </Link>
+
     <Link to="/" class="navbar-brand text-white px-5">Novagram</Link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        
-        
           </ul>
-        
-      
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+          <li className="nav-item">
+           <Link to="/about"> <button type="button" className="btn btn-info me-5 px-4 text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">About</button></Link>
+            </li>
+
     </div>
   </div>
 </nav>
@@ -192,7 +193,6 @@ console.log("MOO",user)
   <div class="textbara">
   
   </div>
-
   <div class="container">
     <div class="row">
       <div class="col">
@@ -212,28 +212,28 @@ console.log("MOO",user)
         </div>
       </div>
 
+
       <div class="col reper">
         <div class="row justify-content-end">
           <div class="col-sm">
-            <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
+            {/* <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link> */}
           </div>
       {isAuth ? (
-        <Dropdown/>
+      <Link onClick={onLogoutHandler}>logout</Link>
       ) : (
-        <div className="col-sm">
 
+        <>
         <Link to="/signup" className="btn btn-warning me-2">Sign Up</Link>
-
         <Link to="/signin" className="btn btn-outline-success me-2">
           <i className="bi bi-box-arrow-in-right"></i>
         </Link>
+        </>
+      )}
     </div>
 
-      )}
         </div>
       </div>
     </div>
-  </div>
 </nav>
 
    
@@ -258,7 +258,7 @@ console.log("MOO",user)
       </main>
     </div>
 
-<footer  className="text-center text-lg-start bg-body-tertiary text-muted">
+    <footer className="text-center text-lg-start bg-body-tertiary text-muted">
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <div class="me-5 d-none d-lg-block">
       <span>Get connected with us on social networks:</span>

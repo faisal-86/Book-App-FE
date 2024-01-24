@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 export default function Signin(props) {
 
@@ -14,7 +16,7 @@ const handleChange = (e) => {
 const loginHandler = (event) => {
     event.preventDefault();
     props.login(newUser);
-    event.target.reset();
+    // event.target.reset();
 };
 return (
   <div className="container mt-5">
@@ -35,14 +37,22 @@ return (
                 <input type="password" className="form-control" id="password" name="password" onChange={handleChange} required />
               </div>
 
+              {/* <Link to='/home'> */}
               <button type="submit" className="btn btn-primary w-100" data-bs-dismiss={props.showModal}>Login</button>
-            </form>
+              {/* </Link> */}
+              </form>
 
             <p className="text-danger text-center mt-5">{props.warning}</p>
           </div>
         </div>
       </div>
     </div>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
   </div>
 );
 }
