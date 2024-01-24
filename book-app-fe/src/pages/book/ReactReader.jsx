@@ -1,15 +1,14 @@
-// ReactReader.jsx
 import React, { useState, useEffect } from 'react';
 import { ReactReader } from 'react-reader';
 import { useEpub } from './EpubContext';
+import ePub from 'epubjs';
 
 const MyEpubReader = () => {
   const { epubPath } = useEpub();
-  const title = 'EPUB Reader';
+  const [title, setTitle] = useState('EPUB Reader'); // Default title
 
   const epubFilename = epubPath.split('/').pop();
-  const storageKey = `epubLocation-${epubFilename}`;  // Unique storage key for each book
-
+  const storageKey = `epubLocation-${epubFilename}`; // Unique storage key for each book
   const [location, setLocation] = useState(localStorage.getItem(storageKey) || undefined);
 
   const onLocationChanged = (newLocation) => {
@@ -22,12 +21,17 @@ const MyEpubReader = () => {
 
   useEffect(() => {
     console.log("EPUB URL:", constructedUrl);
-    // Load the location from localStorage when the book changes
     const storedLocation = localStorage.getItem(storageKey);
     if (storedLocation) {
       setLocation(storedLocation);
     }
-  }, [epubPath, storageKey]); // Add epubPath and storageKey as dependencies
+
+    // Extracting the title from the EPUB file
+    const book = ePub(constructedUrl);
+    book.loaded.metadata.then((metadata) => {
+      setTitle(metadata.title); // Set the book title
+    });
+  }, [epubPath, storageKey, constructedUrl]);
 
   return (
     <div style={{ position: "relative", height: "100vh" }}>
@@ -46,6 +50,7 @@ const MyEpubReader = () => {
 }
 
 export default MyEpubReader;
+
 
 
 
