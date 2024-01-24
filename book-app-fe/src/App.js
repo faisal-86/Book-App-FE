@@ -18,6 +18,7 @@ import Category from './pages/category/Category'
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
 import BookCreateForm from './pages/book/BookCreateForm';import MyEpubReader from './pages/book/ReactReader'; // The path to your MyEpubReader component
+import { EpubProvider } from './pages/book/EpubContext'; // Adjust the path as per your project structure
 
 
 
@@ -164,6 +165,7 @@ const onLogoutHandler = (e) => {
 console.log("MOO",user)
   
   return(
+    <EpubProvider> {/* Start wrapping your components inside EpubProvider */}
     <>
     <nav class="navbar navbar-expand-lg bg-dark w-auto p-4">
   <div class="container-fluid">
@@ -255,9 +257,8 @@ console.log("MOO",user)
           <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
           <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
-          {/* Add the MyEpubReader route here */}
-           {/* <Route path="/reader" element={<MyEpubReader />}></Route> */}
-           <Route path="/reader" element={<MyEpubReader epubUrl="https://raw.githubusercontent.com/faisal-86/Novagram-BE/main/public/uploads/epubs/example.epub" title="Sandi the Kingmaker" />} />
+          {/* Correct MyEpubReader route */}
+          <Route path="/reader" element={<MyEpubReader />} />
         </Routes>
       </main>
     </div>
@@ -335,12 +336,11 @@ console.log("MOO",user)
   </section>
 
    <div class="text-center p-4">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div> 
-
-</footer>
-
-  </>
-);
-};
+   © 2021 Copyright:
+        <a className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      </div>
+      </footer>
+      </>
+    </EpubProvider>
+  );
+}
