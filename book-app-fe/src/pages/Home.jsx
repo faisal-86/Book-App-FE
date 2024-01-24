@@ -1,40 +1,24 @@
-import React from 'react'
-import Card from 'react-bootstrap/Card';
+import React from 'react';
 import Category from './category/Category';
 import BookCard from './book/Book';
-
-
 export default function Home() {
-    return (
-
-      <div className="cardhome">
-        
-        <div className="catediv">
-        <div className=' navbar-light bg-light w-75 ms-5 d-flex align-items-center justify-content-center'>
-          <h2><i class="bi bi-bookmark"></i>Category</h2>
-          </div>
-        <div>
-          <Category></Category>
-        </div>
-
-        </div>
-
-        <div className="rdbook ">
-          <div className=' navbar-light bg-light w-75 ms-5 d-flex align-items-center justify-content-center'>
-          <h2><i class="bi bi-bookmark"></i>New Book</h2>
-          </div>
-        <div>
-          <BookCard></BookCard>
-          
-    </div>
-        </div>
-
-
-
-
-
+  return (
+      <>
+      {/* Welcome Section */}
+      <div className="text-center mb-5">
+        <h1 className="display-4">Welcome to NovaGram</h1>
+        <p className="lead">Explore our categories and discover new books!</p>
       </div>
-    
-    
+      {/* Category Section */}
+        <h2 className="text-center mb-4">Categories</h2>
+        <div className="justify-content-center">
+          <Category />
+        </div>
+      {/* New Book Section */}
+        <h2 className="text-center mb-4">New Books</h2>
+        <div className="justify-content-center">
+          <BookCard />
+        </div>
+        </>
   );
 }
