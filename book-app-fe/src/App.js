@@ -17,7 +17,7 @@ import ProfilePage from './components/registration/Profile';
 import Category from './pages/category/Category'
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
-
+import BookCreateForm from './pages/book/BookCreateForm';
 
 
 
@@ -148,17 +148,15 @@ const registerHandler = (user) => {
     console.log(error);
   })
 }
+const onLogoutHandler = (e) => {
+  e.preventDefault();
+  localStorage.removeItem("token");
+  setSignedUp(false);
+  setIsAuth(false);
+  setUser(null);
+  navigate('/');
+};
 
-  const onLogoutHandler = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    setSignedUp(false);
-    setIsAuth(false);
-    setUser(null);
-    navigate('/');
-  }
-
-  
 
 
 
@@ -201,6 +199,7 @@ console.log("MOO",user)
       <div class="col">
         <div class="row">
 
+
           <div class="col-sm" style={{display:'flex' , justifyContent:'space-between'}}>
             <Link to="/home" className='homelink'>
               <i class="bi bi-house-door-fill" >
@@ -216,10 +215,13 @@ console.log("MOO",user)
             <i class="bi bi-book"> Books</i>
 
             </Link>
-          </div>
 
+          <div class="col-sm">
+            <Link to="manga" className='homelink'>Manga</Link>
+          </div>
         </div>
       </div>
+
       <div className="col reper">
       <div className="row justify-content-end">
 
@@ -269,6 +271,7 @@ console.log("MOO",user)
 
     </div>
   </div>
+
 </nav>
 
    
@@ -287,12 +290,13 @@ console.log("MOO",user)
           <Route path='/category' element={<Category/>}></Route>
           <Route path='/book' element={<Book/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
+          <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
 
         </Routes>
       </main>
     </div>
 
-<footer  className="text-center text-lg-start bg-body-tertiary text-muted">
+    <footer className="text-center text-lg-start bg-body-tertiary text-muted">
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <div class="me-5 d-none d-lg-block">
       <span>Get connected with us on social networks:</span>

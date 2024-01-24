@@ -1,106 +1,107 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import Axios from 'axios';
 
 export default function BookCreateForm(props) {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [formData, setFormData] = useState({
-    title: '',
-    author: '',
-    description: '',
-    isbn: '',
-    publish_date: '',
-    category: '',
-    library: '',
-    review: '',
-  });
+  const [newBook, setNewBook] = useState([]);
+  const [categories, setCategories] = useState([]); // Added state for categories
+  const navigate = useNavigate();
+  
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedFile(file);
+  useEffect (() => {
+    // Fetch categories when the component mounts
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = () => {
+    Axios.get('/category/index')
+    .then((response) => {
+      setCategories(response.data.categories);
+    })
+    .catch((error) =>{
+      console.error('Error fetching categories:', error);
+      
+    })
   };
-  const handleUploadClick = () => {
-    if (!selectedFile) {
-      return;
-    }
-}
-
-//   const handleUpload = () => {
-//     // Perform any necessary validation
-//     if (selectedFile) {
-//       // Pass the selected file to the parent component
-//       //   onUpload(selectedFile);
-//     }
-//   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const book = { ...newBook };
+    book[e.target.name] = e.target.value;
+    setNewBook(book);
   };
 
-  const handleSubmit = (e) => {
+  const handleAddBook = (e) => {
     e.preventDefault();
-    // You can perform any further actions with the form data here, like sending it to an API.
-    
-    console.log('Form Data:', formData);
+    addBook(newBook);
   };
 
+  function addBook(book) {
+    Axios.post('/book/create', book, props.headers)
+    .then((book) => {
+      console.log(book);
+      navigate('/book/detail')
+    })
+  }
+
+ 
   return (
     <div className="container mt-5">
-      <form onSubmit={handleSubmit}>
+      <h2>Add New Book</h2>
+      <form onSubmit={handleAddBook}>
         <div className="mb-3">
           <label className="form-label">Title:</label>
-          <input type="text" className="form-control" name="title" value={formData.title} onChange={handleChange} />
+          <input type="text" className="form-control" name="title"  onChange={handleChange} placeholder="Enter book name"/>
         </div>
 
         <div className="mb-3">
           <label className="form-label">Author:</label>
-          <input type="text" className="form-control" name="author" value={formData.author} onChange={handleChange} />
+          <input type="text" className="form-control" name="author"  onChange={handleChange} />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Description:</label>
-          <textarea className="form-control" name="description" value={formData.description} onChange={handleChange} />
+          <textarea className="form-control" name="description"  onChange={handleChange} />
         </div>
 
         <div className="mb-3">
           <label className="form-label">ISBN:</label>
-          <input type="text" className="form-control" name="isbn" value={formData.isbn} onChange={handleChange} />
+          <input type="text" className="form-control" name="isbn"  onChange={handleChange} />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Publish Date:</label>
-          <input type="date" className="form-control" name="publish_date" value={formData.publish_date} onChange={handleChange} />
+          <input type="date" className="form-control" name="publish_date"  onChange={handleChange} />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Category:</label>
-          <input type="text" className="form-control" name="category" value={formData.category} onChange={handleChange} />
-        </div>
+          <select type="text" className="form-control" name="category" value={newBook.category}  onChange={handleChange} >
 
-        <div className="mb-3">
-          <label className="form-label">Library:</label>
-          <input type="text" className="form-control" name="library" value={formData.library} onChange={handleChange} />
+            <option value="">Select Category</option>
+            {categories && categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
         </div>
-
-        <div className="mb-3">
-          <label className="form-label">Review:</label>
-          <textarea className="form-control" name="review" value={formData.review} onChange={handleChange} />
-        </div>
-
-        {/* <div className="mb-3">
-          <input className="form-control" type="file" onChange={handleFileChange} />
-        </div> */}
 
         <div>
-      <input className="form-control" type="file" onChange={handleFileChange} />
+          <label className="form-label my-3" htmlFor="bookImage">
+            Book Cover
+          </label>
+          <input
+            type="file"
+            name="image"
+            className="form-control"
+            onChange={handleChange}
+            placeholder="Add book image"
+          />
+        </div>
 
-      <div>{selectedFile && `${selectedFile.name} - ${selectedFile.type}`}</div>
-
-      <button className="btn btn-success" style={{margin: 20}} onClick={handleUploadClick}>Upload</button>
-    </div>
-
+        <div>
+        <input className='btn btn-primary my-3' type="submit" value="Create Book"/>
+        </div>
 
       </form>
     </div>

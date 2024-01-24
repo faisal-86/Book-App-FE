@@ -98,6 +98,9 @@
 
 body{
   background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
 }
 .emp-profile{
   padding: 3%;
@@ -131,4 +134,7 @@ body{
 }
 .profile-head h5{
   color: #333;
+}
+.main {
+  flex: 1;
 }
