@@ -24,6 +24,7 @@ import BookCreateForm from './pages/book/BookCreateForm';
 
 
 import BookDetail from './pages/book/BookDetail';
+import Library from './pages/library/Library';
 
 // import { useNavigate } from 'react-router-dom';
 
@@ -302,6 +303,8 @@ console.log("MOO",user)
           <Route path='/book' element={<Book isAdmin={userData?.role === 'admin'}/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
           <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
+          <Route path="/library" element={<Library userData={userData} />} />
+
 
         </Routes>
       </main>
