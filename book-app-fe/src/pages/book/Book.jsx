@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 export default function BookCard(props) {
+
   const [books, setBooks] = useState([]);
   const [isAdmin, setIsAdmin] = useState(props.isAdmin); // Assuming you have a state for admin status
   useEffect(() => {

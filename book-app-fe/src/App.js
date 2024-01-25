@@ -17,12 +17,17 @@ import ProfilePage from './components/registration/Profile';
 import Category from './pages/category/Category'
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
-import BookCreateForm from './pages/book/BookCreateForm';
+
+import BookCreateForm from './pages/book/BookCreateForm';import MyEpubReader from './pages/book/ReactReader'; // The path to your MyEpubReader component
+import { EpubProvider } from './pages/book/EpubContext'; // Adjust the path as per your project structure
+
+
+
 
 
 
 import BookDetail from './pages/book/BookDetail';
-import Footer from './pages/Footer';
+import Library from './pages/library/Library';
 
 // import { useNavigate } from 'react-router-dom';
 
@@ -123,7 +128,7 @@ const loginHandler = (credentials) => {
         guser ? setIsAuth(true) : setIsAuth(false);
         guser ? setUser(guser) : setUser(null);
         fetchUserData(guser.id);
-        navigate('/');
+        navigate('/home');
       }
     }
   })
@@ -155,7 +160,10 @@ const onLogoutHandler = (e) => {
   setSignedUp(false);
   setIsAuth(false);
   setUser(null);
-  navigate('/');
+
+  setuserData(null)
+  navigate('/home');
+
 };
 
 
@@ -182,6 +190,9 @@ console.log("MOO",user)
 
             <Link to="/home" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
               <i className="bi bi-house-door-fill">Home</i>
+<EpubProvider> {/* Start wrapping your components inside EpubProvider */}
+    <>
+    
             </Link>
             <Link to="category" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
               <i className="bi bi-collection">Category</i>
@@ -228,26 +239,30 @@ console.log("MOO",user)
     <div className="container-fluid p-0">
       <main>
         <Routes>
-          
+
           <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
           <Route path="/signin" element={<Signin login={loginHandler} />}></Route>
           <Route path="/about" element={<About/>}></Route>
           <Route path='/home' element={<Home/>}> </Route>
           <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
-          <Route path='/category' element={<Category/>}></Route>
-          <Route path='/book' element={<Book/>}></Route>
+
+          <Route path='/category' element={<Category isAdmin={userData?.role === 'admin'}/>}></Route>
+          <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
+          <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
+          <Route path='/category/books/:categoryId' element={<CategoryDetail/>}/>
+          <Route path='/book' element={<Book isAdmin={userData?.role === 'admin'}/>}></Route>
           <Route path='/book/show/:id' element={<BookDetail/>}></Route>
           <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
-
+          <Route path="/library" element={<Library userData={userData} />} />
+          {/* Correct MyEpubReader route */}
+          <Route path="/reader" element={<MyEpubReader />} />
         </Routes>
       </main>
     </div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-<Footer/>
 
-  </>
-);
-};
+
+      </>
+
+    </EpubProvider>
+  );
+}
