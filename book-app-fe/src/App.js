@@ -130,7 +130,7 @@ const loginHandler = (credentials) => {
         guser ? setIsAuth(true) : setIsAuth(false);
         guser ? setUser(guser) : setUser(null);
         fetchUserData(guser.id);
-        navigate('/');
+        navigate('/home');
       }
     }
   })
@@ -163,7 +163,7 @@ const onLogoutHandler = (e) => {
   setIsAuth(false);
   setUser(null);
   setuserData(null)
-  navigate('/');
+  navigate('/home');
 };
 
 
