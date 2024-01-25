@@ -33,6 +33,8 @@ export default function Library() {
 
   return (
     <>
+
+    <h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',  gap: '10px',}}>My Books</h1>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', gap: '10px', paddingBottom: '200px' }}>
         {books && books.map(book => (
           <div key={book._id}>

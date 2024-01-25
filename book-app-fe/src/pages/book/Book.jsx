@@ -22,12 +22,7 @@ export default function BookCard(props) {
   
   return (
     <>
-      {isAdmin && (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Link className="btn btn-success" to="add">Add Book</Link>
-        </div>
-       
-      )}
+      
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '10px', paddingBottom: '200px' }}>
         {books.map(book => (
           <div key={book._id} style={{ width: '18rem', maxHeight: '100%' }}>
@@ -39,9 +34,17 @@ export default function BookCard(props) {
                 <h5 className="card-title">{book.title}</h5>
               </div>
             </Card>
+            
           </div>
+          
         ))}
       </div>
+      {isAdmin && (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Link className="btn btn-success" to="add">Add Book</Link>
+        </div>
+       
+      )}
     </>
   );
 }
