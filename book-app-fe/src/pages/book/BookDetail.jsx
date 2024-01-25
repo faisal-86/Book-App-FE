@@ -23,6 +23,18 @@ export default function BookDetail(props) {
       });
   }
 
+
+  const deleteBook = (id) =>{
+    axios.get(`book/delete?id=${id}`)
+    .then(res =>{
+        console.log("Book Deleted")
+      
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+}
+
   const handleReadClick = () => {
     if (book.epubFilePath) {
       setEpubPath(book.epubFilePath);
