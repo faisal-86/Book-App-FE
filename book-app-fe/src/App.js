@@ -26,7 +26,6 @@ import Footer from './pages/Footer';
 
 
 
-
 import BookDetail from './pages/book/BookDetail';
 import Library from './pages/library/Library';
 
@@ -58,7 +57,8 @@ const fetchUserData = (id) => {
   })
     .then((response) => {
       console.log('fetchUserData then');
-      setuserData(response.data.userDetails);
+      setuserData(response.data.user);
+      console.log('user detail',response.data);
       setIsAuth(true);
     })
     .catch((error) => {
@@ -130,7 +130,7 @@ const loginHandler = (credentials) => {
         guser ? setIsAuth(true) : setIsAuth(false);
         guser ? setUser(guser) : setUser(null);
         fetchUserData(guser.id);
-        navigate('/home');
+        navigate('/');
       }
     }
   })
@@ -162,16 +162,15 @@ const onLogoutHandler = (e) => {
   setSignedUp(false);
   setIsAuth(false);
   setUser(null);
-
   setuserData(null)
-  navigate('/home');
-
+  navigate('/');
 };
 
 
 
 
   
+
 return (
   <EpubProvider> {/* Start wrapping your components inside EpubProvider */}
     <>
@@ -265,3 +264,4 @@ return (
   </EpubProvider>
 );
  }
+

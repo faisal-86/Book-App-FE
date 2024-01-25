@@ -25,11 +25,7 @@ export default function Category(props) {
   }, []);
   return (
     <>
-    {isAdmin && (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link className="btn btn-success" to="add">Add Category</Link>
-      </div>
-    )}
+   
     <div
       style={{
         display: "flex",
@@ -60,6 +56,11 @@ export default function Category(props) {
         </div>
       ))}
     </div>
+    {isAdmin && (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Link className="btn btn-success" to="add">Add Category</Link>
+      </div>
+    )}
     </>
   );
 }
