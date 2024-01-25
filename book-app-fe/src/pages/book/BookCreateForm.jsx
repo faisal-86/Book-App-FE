@@ -58,7 +58,7 @@ export default function BookCreateForm(props) {
     })
     .then(response => {
       console.log(response.data);
-      navigate('/book/index');
+      navigate('/book');
     })
     .catch(error => {
       console.error('Error adding book:', error);

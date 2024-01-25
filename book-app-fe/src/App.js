@@ -22,7 +22,7 @@ import Dropdown from './components/registration/Dropdown';
 import BookCreateForm from './pages/book/BookCreateForm';import MyEpubReader from './pages/book/ReactReader'; // The path to your MyEpubReader component
 import { EpubProvider } from './pages/book/EpubContext'; // Adjust the path as per your project structure
 
-
+import Footer from './pages/Footer';
 
 
 
@@ -30,6 +30,7 @@ import BookDetail from './pages/book/BookDetail';
 import Library from './pages/library/Library';
 
 // import { useNavigate } from 'react-router-dom';
+
 
 
 const passToken =() => { 
@@ -168,293 +169,88 @@ const onLogoutHandler = (e) => {
 
 
 
-console.log("MOO",user)
   
-  return(
-    <EpubProvider> {/* Start wrapping your components inside EpubProvider */}
+
+return (
+  <EpubProvider> {/* Start wrapping your components inside EpubProvider */}
     <>
-    <nav class="navbar navbar-expand-lg bg-dark w-auto p-4">
-  <div class="container-fluid">
-          <Link to="/home">
-          <img src="./logo-white.png" alt="Novagram Logo" style={{ height: '75px' , width: '100px' }} />
-          </Link>
-
-    <Link to="/home" class="navbar-brand text-white px-5">Novagram</Link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          </ul>
-
-          <li className="nav-item">
-           <Link to="/about"> <button type="button" className="btn btn-info me-5 px-4 text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">About</button></Link>
-            </li>
-
-  </div>
-</div>
-</nav>
-<nav class="navla">
-<div class="textbara">
-</div>
-<div class="container">
-  <div class="row" >
-    <div class="col">
-      <div class="row">
-        <div class="col-sm" style={{display:'flex' , justifyContent:'space-between'}}>
-          <Link to="/home" className='homelink'>
-            <i class="bi bi-house-door-fill" >
-              Home
-            </i>
-            </Link>
-          <Link to="category" className='homelink'>
-            <i class="bi bi-collection">Category</i>
-          </Link>
-          <Link to="/book" className='homelink'>
-          <i class="bi bi-book"> Books</i>
-          </Link>
-        <div class="col-sm">
-          <Link to="uupdate" className='homelink'>update</Link>
-        </div>
-      </div>
-    </div>
-    <div className="col reper">
-    <div className="row justify-content-end">
-      <div>
-        {isAuth ? (
-          // Render the fields when the user is authenticated
-          <div>
-            <Link to="/profile" className="homelink">
-              <i className="bi bi-person-fill" style={{ fontSize: '25px', padding:'10px' }}>Profile</i>
-            </Link>
-            <Link to="/library" className="homelink">
-              <i class="bi bi-bookmark-heart-fill" style={{ fontSize: '25px' ,padding:'10px' }}> Library</i>
-            </Link>
-            <Link className="homelink" onClick={onLogoutHandler}>
-              <i  class="bi bi-door-closed-fill" style={{ fontSize: '25px' }}>
-                Log-Out
-              </i>
-            </Link>
-          </div>
-        ) : (
-          // Render something else when the user is not authenticated
-          <div>
-              <Link to="/signup" className="homelink" style={{ fontSize: '25px' }}>
-              <i class="bi bi-sign-intersection-fill">
-                Sign-Up
-                </i>
-              </Link>
-              <Link to="/signin" className="homelink" style={{ fontSize: '25px' , padding:'20px'}}>
-                <i className="bi bi-door-open">
-                  Sign-In
-                </i>
-              </Link>
-        </div>
-        )}
-      </div>
-    </div>
-  </div>
-  </div>
-</div>
-</div>
-</nav>
-
-        
-
-
-
-
-
-<nav class="navla">
-  <div class="textbara">
-  
-  </div>
-  <div class="container">
-    <div class="row" >
-      <div class="col">
-        <div class="row">
-
-
-          <div class="col-sm" style={{display:'flex' , justifyContent:'space-between'}}>
-            <Link to="/home" className='homelink'>
-              <i class="bi bi-house-door-fill" >
-                Home
-              </i>
-              </Link>
- 
-            <Link to="category" className='homelink'>
-              <i class="bi bi-collection">Category</i>
-            </Link>
-
-            <Link to="/book" className='homelink'>
-            <i class="bi bi-book"> Books</i>
-
-            </Link>
-
-          <div class="col-sm">
-            <Link to="uupdate" className='homelink'>update</Link>
-          </div>
-        </div>
-      </div>
-
-      <div className="col reper">
-      <div className="row justify-content-end">
-
-        <div>
-
-          {isAuth ? (
-            // Render the fields when the user is authenticated
-            <div>
-    
-
-              <Link to="/profile" className="homelink">
-                <i className="bi bi-person-fill" style={{ fontSize: '25px', padding:'10px' }}>Profile</i>
-              </Link>
-
-              <Link to="/library" className="homelink">
-                <i class="bi bi-bookmark-heart-fill" style={{ fontSize: '25px' ,padding:'10px' }}> Library</i>
-
-              </Link>
-
-              <Link className="homelink" onClick={onLogoutHandler}>
-                <i  class="bi bi-door-closed-fill" style={{ fontSize: '25px' }}>
-                  Log-Out
-                </i>
-              </Link>
+      <nav className="bg-dark text-white py-4"> 
+        <Link to="/home" style={{ textDecoration: 'none', color: 'white' }}>      
+          <h1 className='NovHeader'>NovaGram</h1>
+        </Link>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <div className="row">
+                <div style={{}}>
+                  <Link to="/home" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+                    <i className="bi bi-house-door-fill">Home</i>
+                  </Link>
+                  <Link to="/category" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+                    <i className="bi bi-collection">Category</i>
+                  </Link>
+                  <Link to="/book" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+                    <i className="bi bi-book">Books</i>
+                  </Link>
+                </div>
+              </div>
             </div>
-          ) : (
-            // Render something else when the user is not authenticated
-            <div>
-                <Link to="/signup" className="homelink" style={{ fontSize: '25px' }}>
-                <i class="bi bi-sign-intersection-fill">
-                  Sign-Up
-                  </i>
-                </Link>
-
-                <Link to="/signin" className="homelink" style={{ fontSize: '25px' , padding:'20px'}}>
-                  <i className="bi bi-door-open">
-                    Sign-In
-                  </i>
-                </Link>
-
+            <div className="col reper">
+              <div className="row justify-content-end">
+                <div>
+                  {isAuth ? (
+                    <div>
+                      <Link to="/profile" className="homelink">
+                        <i className="bi bi-person-fill" style={{ fontSize: '25px', padding: '10px', color: 'white' }}>Profile</i>
+                      </Link>
+                      <Link to="/library" className="homelink">
+                        <i className="bi bi-bookmark-heart-fill" style={{ fontSize: '25px', padding: '10px', color: 'white' }}>Library</i>
+                      </Link>
+                      <Link className="homelink" onClick={onLogoutHandler}>
+                        <i className="bi bi-door-closed-fill" style={{ fontSize: '25px', color: 'white' }}>Log-Out</i>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link to="/signup" className="homelink" style={{ fontSize: '25px', color: 'white' }}>
+                        <i className="bi bi-sign-intersection-fill">Sign-Up</i>
+                      </Link>
+                      <Link to="/signin" className="homelink" style={{ fontSize: '25px', padding: '20px', color: 'white' }}>
+                        <i className="bi bi-door-open">Sign-In</i>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-
-
-          )}
         </div>
+      </nav>
+
+      <div className="container-fluid p-0">
+        <main>
+          <Routes>
+            <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
+            <Route path="/signin" element={<Signin login={loginHandler} />}></Route>
+            <Route path="/about" element={<About/>}></Route>
+            <Route path='/home' element={<Home/>}></Route>
+            <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
+            <Route path='/category' element={<Category isAdmin={userData?.role === 'admin'}/>}></Route>
+            <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
+            <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
+            <Route path='/category/books/:categoryId' element={<CategoryDetail/>}/>
+            <Route path='/book' element={<Book isAdmin={userData?.role === 'admin'}/>}></Route>
+            <Route path='/book/show/:id' element={<BookDetail/>}></Route>
+            <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
+            <Route path="/library" element={<Library userData={userData} />} />
+            <Route path="/reader" element={<MyEpubReader />} />
+            {/* Additional Routes */}
+          </Routes>
+        </main>
       </div>
-    </div>
+      <Footer></Footer>
+    </>
+  </EpubProvider>
+);
+ }
 
-    </div>
-  </div>
-  </div>
-
-</nav>
-
-   
-        
-
-
-    <div className="container-fluid p-0">
-      <main>
-        <Routes>
-          <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
-          <Route path="/signin" element={<Signin login={loginHandler} />}></Route>
-          <Route path="/about" element={<About/>}></Route>
-          <Route path='/home' element={<Home/>}> </Route>
-          <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
-          <Route path='/category' element={<Category isAdmin={userData?.role === 'admin'}/>}></Route>
-          <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
-          <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
-          <Route path='/category/books/:categoryId' element={<CategoryDetail/>}/>
-          <Route path='/book' element={<Book isAdmin={userData?.role === 'admin'}/>}></Route>
-          <Route path='/book/show/:id' element={<BookDetail/>}></Route>
-          <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
-          <Route path="/library" element={<Library userData={userData} />} />
-          {/* Correct MyEpubReader route */}
-          <Route path="/reader" element={<MyEpubReader />} />
-        </Routes>
-      </main>
-    </div>
-
-    <footer className="text-center text-lg-start bg-body-tertiary text-muted">
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
-    </div>
-
-
-  </section>
-
-  <section class="">
-    <div class="container text-center text-md-start mt-5">
-      <div class="row mt-3">
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Novagram
-          </h6>
-          <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
-          </p>
-        </div>
-
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <h6 class="text-uppercase fw-bold mb-4">
-            Products
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Angular</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">React</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Laravel</a>
-          </p>
-        </div>
-
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <h6 class="text-uppercase fw-bold mb-4">
-            Useful links
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Pricing</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Settings</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Orders</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Help</a>
-          </p>
-        </div>
-
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-          <p>
-            <i class="fas fa-envelope me-3"></i>
-            info@example.com
-          </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-   <div class="text-center p-4">
-   © 2021 Copyright:
-        <a className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-      </div>
-      </footer>
-      </>
-    </EpubProvider>
-  );
-}

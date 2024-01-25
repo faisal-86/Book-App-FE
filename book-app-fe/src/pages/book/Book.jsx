@@ -26,6 +26,7 @@ export default function BookCard(props) {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Link className="btn btn-success" to="add">Add Book</Link>
         </div>
+       
       )}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '10px', paddingBottom: '200px' }}>
         {books.map(book => (

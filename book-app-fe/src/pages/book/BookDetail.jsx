@@ -24,16 +24,17 @@ export default function BookDetail(props) {
   }
 
 
-  const deleteBook = (id) =>{
-    axios.get(`book/delete?id=${id}`)
-    .then(res =>{
-        console.log("Book Deleted")
-      
-    })
-    .catch(err =>{
-        console.log(err);
-    })
-}
+  const handleDelete = (bookId) => {
+    axios.get(`/book/delete?id=${bookId}`, props.headers)
+      .then((res) => {
+        console.log(`Product with ID ${bookId} deleted successfully`);
+        
+      })
+      .catch((err) => {
+        console.error(`Error deleting book with ID ${bookId}:`, err);
+      });
+  };
+
 
   const handleReadClick = () => {
     if (book.epubFilePath) {
@@ -91,7 +92,11 @@ export default function BookDetail(props) {
                   <td colSpan="2">
                     <button onClick={handleReadClick} className="btn btn-primary" style={{ width: '100%' }}>Start Reading</button>
                   </td>
+                  <td colSpan="2">
+                    <button onClick={handleDelete} className="btn btn-danger" style={{ width: '100%' }}>Delete</button>
+                  </td>
                 </tr>
+                
               )}
             </tbody>
           </table>
