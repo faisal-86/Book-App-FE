@@ -163,7 +163,7 @@ const onLogoutHandler = (e) => {
   setIsAuth(false);
   setUser(null);
   setuserData(null)
-  navigate('/home');
+  navigate('/signin');
 };
 
 
