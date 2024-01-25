@@ -43,125 +43,23 @@ export default function Profile(props) {
   }, [props.user]);
 
   return (
-    <div class="container emp-profile">
-      <form method="post">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="profile-img">
-              <img src={user.avatar} alt="" />
-              <div class="file btn btn-lg btn-primary">
-                Change Photo
-                <input type="file" name="file" />
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="profile-head">
-              <h5>{user.firstname}</h5>
-
-              <p class="proile-rating">
-                RANKINGS : <span>8/10</span>
-              </p>
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    id="home-tab"
-                    data-toggle="tab"
-                    href="#home"
-                    role="tab"
-                    aria-controls="home"
-                    aria-selected="true"
-                  >
-                    About
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    id="profile-tab"
-                    data-toggle="tab"
-                    href="#profile"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="false"
-                  >
-                    Timeline
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <input
-              type="submit"
-              class="profile-edit-btn"
-              name="btnAddMore"
-              value="Edit Profile"
-            />
-          </div>
-        </div>
-        <div class="row">
-          {/* <div class="col-md-4">
-            <div class="profile-work">
-              <p>WORK LINK</p>
-              <a href="">Website Link</a>
-              <br />
-              <a href="">Bootsnipp Profile</a>
-              <br />
-              <a href="">Bootply Profile</a>
-              <p>SKILLS</p>
-              <a href="">Web Designer</a>
-              <br />
-              <a href="">Web Developer</a>
-              <br />
-              <a href="">WordPress</a>
-              <br />
-              <a href="">WooCommerce</a>
-              <br />
-              <a href="">PHP, .Net</a>
-              <br />
-            </div>
-          </div> */}
-          <div class="col-md-8">
-            <div class="tab-content profile-tab" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="home"
-                role="tabpanel"
-                aria-labelledby="home-tab"
-              >
-                
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Name</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{user.firstName}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Email</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{user.emailAddress}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Phone</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{user.phoneNumber}</p>
-                  </div>
-                </div>
-              
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
+    <div className="container mt-4" style={{ display: 'flex' }}>
+  <div className="card" style={{ width: '350px' }}>
+    <img
+      src="./logo-white.png"
+      className="card-img-top"
+      alt="User Avatar"
+      style={{ height: '100%',borderRadius:'200px' }}
+    />
+  </div>
+  <div className="card" style={{ flex: '1', marginLeft: '10px' }}>
+    <div className="card-body">
+      <h5 className="card-title" style={{ fontSize: '25px' }}>User Name: {user.firstName}</h5>
+      <p className="card-text" style={{ fontSize: '25px', fontWeight:'bold' }}>Email: {user.emailAddress}</p>
+      <p style={{ fontSize: '25px', fontWeight:'bold' }}>Phone Number: {user.phoneNumber}</p>
     </div>
-  );
-}
+  </div>
+</div>
+
+  )
+  }

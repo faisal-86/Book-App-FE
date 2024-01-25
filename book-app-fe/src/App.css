@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Montserrat&display=swap');
 .App {
   text-align: center;
+}
+
+.NovHeader {
+  font-family: 'Grape Nuts', cursive;
+  font-size: 45px;
+  font-weight: bold;
+  padding-left: 20px;
+  height: 0;
 }
 
 /* Link Styles */
