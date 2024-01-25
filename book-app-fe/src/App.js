@@ -14,14 +14,15 @@ import BookEditForm from './pages/book/BookEditForm';
 import About from './pages/About';
 import Home from './pages/Home';
 import ProfilePage from './components/registration/Profile';
-import Category from './pages/category/Category'
+import Category from './pages/category/Category';
+import CategoryCreateForm from './pages/category/CategoryCreateForm';
+import CategoryDetail from './pages/category/CategoryDetail';
 import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
-
 import BookCreateForm from './pages/book/BookCreateForm';import MyEpubReader from './pages/book/ReactReader'; // The path to your MyEpubReader component
 import { EpubProvider } from './pages/book/EpubContext'; // Adjust the path as per your project structure
 
-
+import Footer from './pages/Footer';
 
 
 
@@ -30,6 +31,7 @@ import BookDetail from './pages/book/BookDetail';
 import Library from './pages/library/Library';
 
 // import { useNavigate } from 'react-router-dom';
+
 
 
 const passToken =() => { 
@@ -169,100 +171,86 @@ const onLogoutHandler = (e) => {
 
 
 
-console.log("MOO",user)
   
-  return(
+return (
+  <EpubProvider> {/* Start wrapping your components inside EpubProvider */}
     <>
-
-<nav className="bg-dark text-white py-4"> 
-<Link to="home" style={{textDecoration: 'none' , color:'white'}}>      
-  <h1 className='NovHeader'>NovaGram</h1>
-  </Link> 
-  <div className="container">
-
-    <div className="row">
-      <div className="col">
-
-        
-        <div className="row">
-          
-          <div style={{}}>
-
-            <Link to="/home" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
-              <i className="bi bi-house-door-fill">Home</i>
-<EpubProvider> {/* Start wrapping your components inside EpubProvider */}
-    <>
-    
-            </Link>
-            <Link to="category" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
-              <i className="bi bi-collection">Category</i>
-            </Link>
-            <Link to="/book" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
-              <i className="bi bi-book">Books</i>
-            </Link>
+      <nav className="bg-dark text-white py-4"> 
+        <Link to="/home" style={{ textDecoration: 'none', color: 'white' }}>      
+          <h1 className='NovHeader'>NovaGram</h1>
+        </Link>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <div className="row">
+                <div style={{}}>
+                  <Link to="/home" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+                    <i className="bi bi-house-door-fill">Home</i>
+                  </Link>
+                  <Link to="/category" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+                    <i className="bi bi-collection">Category</i>
+                  </Link>
+                  <Link to="/book" className='homelink' style={{ fontSize: '25px', padding: '10px', color: 'white' }}>
+                    <i className="bi bi-book">Books</i>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="col reper">
+              <div className="row justify-content-end">
+                <div>
+                  {isAuth ? (
+                    <div>
+                      <Link to="/profile" className="homelink">
+                        <i className="bi bi-person-fill" style={{ fontSize: '25px', padding: '10px', color: 'white' }}>Profile</i>
+                      </Link>
+                      <Link to="/library" className="homelink">
+                        <i className="bi bi-bookmark-heart-fill" style={{ fontSize: '25px', padding: '10px', color: 'white' }}>Library</i>
+                      </Link>
+                      <Link className="homelink" onClick={onLogoutHandler}>
+                        <i className="bi bi-door-closed-fill" style={{ fontSize: '25px', color: 'white' }}>Log-Out</i>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link to="/signup" className="homelink" style={{ fontSize: '25px', color: 'white' }}>
+                        <i className="bi bi-sign-intersection-fill">Sign-Up</i>
+                      </Link>
+                      <Link to="/signin" className="homelink" style={{ fontSize: '25px', padding: '20px', color: 'white' }}>
+                        <i className="bi bi-door-open">Sign-In</i>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </nav>
+
+      <div className="container-fluid p-0">
+        <main>
+          <Routes>
+            <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
+            <Route path="/signin" element={<Signin login={loginHandler} />}></Route>
+            <Route path="/about" element={<About/>}></Route>
+            <Route path='/home' element={<Home/>}></Route>
+            <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
+            <Route path='/category' element={<Category isAdmin={userData?.role === 'admin'}/>}></Route>
+            <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
+            <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
+            <Route path='/category/books/:categoryId' element={<CategoryDetail/>}/>
+            <Route path='/book' element={<Book isAdmin={userData?.role === 'admin'}/>}></Route>
+            <Route path='/book/show/:id' element={<BookDetail/>}></Route>
+            <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
+            <Route path="/library" element={<Library userData={userData} />} />
+            <Route path="/reader" element={<MyEpubReader />} />
+            {/* Additional Routes */}
+          </Routes>
+        </main>
       </div>
-      <div className="col reper">
-        <div className="row justify-content-end">
-          <div>
-            {isAuth ? (
-              <div>
-                <Link to="/profile" className="homelink">
-                  <i className="bi bi-person-fill" style={{ fontSize: '25px', padding: '10px', color: 'white' }}>Profile</i>
-                </Link>
-                <Link to="/library" className="homelink">
-                  <i className="bi bi-bookmark-heart-fill" style={{ fontSize: '25px', padding: '10px', color: 'white' }}> Library</i>
-                </Link>
-                <Link className="homelink" onClick={onLogoutHandler}>
-                  <i className="bi bi-door-closed-fill" style={{ fontSize: '25px', color: 'white' }}>Log-Out</i>
-                </Link>
-              </div>
-            ) : (
-              <div>
-                <Link to="/signup" className="homelink" style={{ fontSize: '25px', color: 'white' }}>
-                  <i className="bi bi-sign-intersection-fill">Sign-Up</i>
-                </Link>
-                <Link to="/signin" className="homelink" style={{ fontSize: '25px', padding: '20px', color: 'white' }}>
-                  <i className="bi bi-door-open">Sign-In</i>
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-
-
-    <div className="container-fluid p-0">
-      <main>
-        <Routes>
-
-          <Route path="/signup" element={signedUp ? <Signin login={loginHandler} warning={warning} /> : <Signup register={registerHandler} />}></Route>
-          <Route path="/signin" element={<Signin login={loginHandler} />}></Route>
-          <Route path="/about" element={<About/>}></Route>
-          <Route path='/home' element={<Home/>}> </Route>
-          <Route path='/profile' element={<ProfilePage user={user}/>}></Route>
-
-          <Route path='/category' element={<Category isAdmin={userData?.role === 'admin'}/>}></Route>
-          <Route path="/category/add" element={<CategoryCreateForm userData={userData} />} />
-          <Route path='/category/view/:id' element={<CategoryDetail/>}></Route>
-          <Route path='/category/books/:categoryId' element={<CategoryDetail/>}/>
-          <Route path='/book' element={<Book isAdmin={userData?.role === 'admin'}/>}></Route>
-          <Route path='/book/show/:id' element={<BookDetail/>}></Route>
-          <Route path="/book/add" element={<BookCreateForm userData={userData} />} />
-          <Route path="/library" element={<Library userData={userData} />} />
-          {/* Correct MyEpubReader route */}
-          <Route path="/reader" element={<MyEpubReader />} />
-        </Routes>
-      </main>
-    </div>
-
-
-      </>
-
-    </EpubProvider>
-  );
-}
+      <Footer></Footer>
+    </>
+  </EpubProvider>
+);
+ }
