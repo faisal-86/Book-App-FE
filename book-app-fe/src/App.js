@@ -21,14 +21,13 @@ import Book from './pages/book/Book';
 import Dropdown from './components/registration/Dropdown';
 import BookCreateForm from './pages/book/BookCreateForm';import MyEpubReader from './pages/book/ReactReader'; // The path to your MyEpubReader component
 import { EpubProvider } from './pages/book/EpubContext'; // Adjust the path as per your project structure
-import Library from '../src/pages/library/Library'
 
 
 
 
 
 import BookDetail from './pages/book/BookDetail';
-import Footer from './pages/Footer';
+import Library from './pages/library/Library';
 
 // import { useNavigate } from 'react-router-dom';
 
@@ -260,6 +259,13 @@ console.log("MOO",user)
 </div>
 </nav>
 
+        
+
+
+
+
+
+   
         
 
 
