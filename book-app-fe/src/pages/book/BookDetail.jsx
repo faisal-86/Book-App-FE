@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useEpub } from './EpubContext'; // Make sure this path is correct
+import { useEpub } from './EpubContext'; // Adjust this import as necessary
 
 export default function BookDetail(props) {
   const { id } = useParams();
@@ -30,8 +30,26 @@ export default function BookDetail(props) {
     }
   }
 
+  const addToLibrary = () => {
+    axios.post('/library/add', { book: id }, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    })
+    .then(response => {
+      console.log('Book added to library', response.data);
+      alert('Book added to library'); // Inform the user
+    })
+    .catch(error => {
+      console.error('Error adding book to library', error);
+      alert('Error adding book to library'); // Inform the user of failure
+    });
+  };
+  
+  
+
   return (
     <div className="container">
+       <button onClick={addToLibrary} className="btn btn-success mt-3" style={{ width: '100%' }}>Add to Library</button>
+
       <div className="row">
         <div className="col-md-6">
           {book.image && (
@@ -74,9 +92,12 @@ export default function BookDetail(props) {
                 <th>Category</th>
                 <td>{book.category?.name}</td>
               </tr>
+              
               {book.epubFilePath && (
                 <tr>
                   <td colSpan="2">
+                   
+                    <br/><br/>
                     <button onClick={handleReadClick} className="btn btn-primary" style={{ width: '100%' }}>Start Reading</button>
                   </td>
                 </tr>
