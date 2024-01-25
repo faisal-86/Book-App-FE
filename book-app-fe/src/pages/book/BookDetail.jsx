@@ -8,6 +8,7 @@ export default function BookDetail(props) {
   const [book, setBook] = useState({});
   const { setEpubPath } = useEpub();
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     getBook(id);
