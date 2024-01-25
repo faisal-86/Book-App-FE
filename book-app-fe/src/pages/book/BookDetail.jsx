@@ -117,5 +117,6 @@ export default function BookDetail(props) {
       </div>
 
     </div>
+    
   );
 }
