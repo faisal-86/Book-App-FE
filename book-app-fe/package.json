@@ -19,6 +19,7 @@
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.0",
+    "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18.2.0",
     "react-reader": "^2.0.4",
     "react-router-dom": "^6.21.3",

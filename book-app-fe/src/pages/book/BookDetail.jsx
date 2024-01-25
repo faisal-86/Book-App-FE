@@ -52,35 +52,27 @@ export default function BookDetail(props) {
             <tbody>
               <tr>
                 <th>Title</th>
-                <td>{props.title || book.title}</td>
+                <td>{ book.title}</td>
               </tr>
               <tr>
                 <th>Author</th>
-                <td>{props.author || book.author}</td>
+                <td>{ book.author}</td>
               </tr>
               <tr>
                 <th>Description</th>
-                <td>{props.description || book.description}</td>
+                <td>{ book.description}</td>
               </tr>
               <tr>
                 <th>ISBN</th>
-                <td>{props.isbn || book.isbn}</td>
+                <td>{book.isbn}</td>
               </tr>
               <tr>
                 <th>Publish Date</th>
-                <td>{props.publish_date || book.publish_date}</td>
+                <td>{ book.publish_date}</td>
               </tr>
               <tr>
                 <th>Category</th>
-                <td>{props.category || (book.category ? book.category.name : 'Uncategorized')}</td>
-              </tr>
-              <tr>
-                <th>Library</th>
-                <td>{props.library || book.library}</td>
-              </tr>
-              <tr>
-                <th>Review</th>
-                <td>{props.review || book.review}</td>
+                <td>{book.category?.name}</td>
               </tr>
               {book.epubFilePath && (
                 <tr>
