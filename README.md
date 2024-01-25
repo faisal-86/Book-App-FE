@@ -3,10 +3,11 @@
 ![Novagram](https://i.imgur.com/h6vtI3x.png)
 
 ## Development Team:
-1. Mohammed Nasser
-2. Faisal_Karim
-3. Ali Abdulla
-4. Wael-Alaa
+- Mohammed Nasser
+- Faisal_Karim
+- Ali Abdulla
+- Wael-Alaa
+
 
 ## Introduction
 Novagram is an online reading platform dedicated to providing a seamless and enjoyable reading experience for users interested in books, manga, novels, and manhwa. With a user-friendly interface and a vast collection of diverse content, we aim to become your go-to destination for online reading.
@@ -46,7 +47,7 @@ Novagram is an online reading platform dedicated to providing a seamless and enj
 
 
 ## ERD
-![Novagram-erd](https://i.imgur.com/hrGHCV9.png)
+![Novagram-erd](https://i.imgur.com/Z0d49kp.png)
 
 ## Trello
 [Project Trello Board]()
@@ -70,28 +71,21 @@ The web application has 2 types of users:
 ![Screen WishList]()
 
 
-### wishlist Page:
-![Screen WishList]()
-
-
 ## Favorite Features in Website
 1. 
 2. 
 3. 
 
 ## Difficult Feature
-1. .
-2. 
-
-## List of Unsolved Problems
 1. 
 2. 
-3. 
+
 
 ## Future Features
-1.
-2.
-3.
+1. history 
+2. favorites
+3. search bar 
+4. 
 
 
 
